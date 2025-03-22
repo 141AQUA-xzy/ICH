@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+body {
+  background: black;
+}
+* {
+  scrollbar-width: none;
+}
+.carousel {
+  animation: carouzel infinite steps(2) 5s;
+}
+.carousel:hover {
+  animation-play-state: paused;
+}
+.carouselX {
+  animation: carousel infinite linear 25s;
+}
+.carouselX:hover {
+  animation-play-state: paused;
+}
+.carouselx {
+  animation: carouselx infinite linear 70s;
+}
+.carouselx:hover {
+  animation-play-state: paused;
+}
+@keyframes carousel {
+  from {
+    transform: translateX(50%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes carouselx {
+  from {
+    transform: translateX(10%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes carouzel {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
