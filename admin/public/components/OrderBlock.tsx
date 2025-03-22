@@ -71,7 +71,7 @@ const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
 
                         console.log("Order Approved:", data);
                     } catch (error) {
-                        toast("Error Approving Order")
+                        toast.error("Error Approving Order")
                         console.error("Error approving order:", error);
                     }
                 }} className="grow border text-center rounded-lg"><DoneOutlineIcon />APPROVED{" "}</button>
