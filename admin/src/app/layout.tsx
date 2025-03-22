@@ -26,9 +26,20 @@ export default function RootLayout({
   return (
     <LoadingProvider>
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <head>
+          {/* Link to PWA Manifest */}
+          <link rel="manifest" href="/manifest.json" />
+
+          {/* PWA Theme Colors */}
+          <meta name="theme-color" content="#ffffff" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="mobile-web-app-capable" content="yes" />
+
+          {/* Fallback Icons for Apple Devices */}
+          <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png" />
+          <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png" />
+        </head>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           {children}
         </body>
       </html>
