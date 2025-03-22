@@ -14,21 +14,21 @@ export default function Home() {
 
   const { hideLoading, isLoading, showLoading } = useLoading()
 
-  const socket = io("http://localhost:5000");
+  // const socket = io("http://localhost:5000");
 
 
-  useEffect(() => {
-    socket.on("admin", (data) => {
-      console.log(data)
-    })
-    socket.on("message", (data) => {
-      console.log(data.message)
-    })
-    //Listening to client message coming through server
-    socket.on("server->admin", (data) => {
-      console.log(data)
-    })
-  }, [])
+  // useEffect(() => {
+  //   socket.on("admin", (data) => {
+  //     console.log(data)
+  //   })
+  //   socket.on("message", (data) => {
+  //     console.log(data.message)
+  //   })
+  //   //Listening to client message coming through server
+  //   socket.on("server->admin", (data) => {
+  //     console.log(data)
+  //   })
+  // }, [])
 
   useEffect(() => {
     showLoading()
