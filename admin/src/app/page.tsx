@@ -49,9 +49,13 @@ export default function Home() {
         const data = await response.json();
         setOrder(data); // ✅ Update state with fetched orders
         hideLoading()
-      } catch (error) {
-        toast.error("Error fetching orders:");
-      }
+    } catch (error: unknown) {
+    if (error instanceof Error) {
+        toast.error(`Error fetching orders: ${error.message}`);
+    } else {
+        toast.error("Error fetching orders: Unknown error");
+    }
+}
     };
     fetchOrders();
   }, []); // ✅ Runs once on component mount
