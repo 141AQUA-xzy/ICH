@@ -36,8 +36,8 @@ export default function RootLayout({
           <meta name="mobile-web-app-capable" content="yes" />
 
           {/* Fallback Icons for Apple Devices */}
-          <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png" />
-          <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png" />
+          <link rel="apple-touch-icon" sizes="192x192" href="/icons/android-chrome-192x192[1].png" />
+          <link rel="apple-touch-icon" sizes="512x512" href="/icons/android-chrome-512x512[1].png" />
         </head>
         <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
           {children}
