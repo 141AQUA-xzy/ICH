@@ -76,7 +76,7 @@ const PayQR: React.FC = () => {
             <a href={upiLink} target="_blank" rel="noopener noreferrer" className="w-1/2 font-extrabold text-amber-300 text-center rounded-lg text-3xl" style={{ boxShadow: "0px 0px 20px 1px #FCA311" }} onClick={async () => {
                 socket.emit("client->server", cart)
                 showLoading()
-                await fetch("http://192.168.43.106:5000/admin/create_order", {
+                await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
                     method: "POST", // ✅ Make sure this is POST
                     headers: {
                         "Content-Type": "application/json" // ✅ Important for JSON data
@@ -109,7 +109,7 @@ const PayQR: React.FC = () => {
             <kbd className="text-amber-400">OR</kbd>
             <button className="text-amber-300 border border-amber-300 p-2 rounded-2xl font-extrabold uppercase" onClick={async () => {
                 showLoading()
-                await fetch("http://192.168.43.106:5000/admin/create_order", {
+                await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
                     method: "POST", // ✅ Make sure this is POST
                     headers: {
                         "Content-Type": "application/json" // ✅ Important for JSON data
@@ -125,7 +125,7 @@ const PayQR: React.FC = () => {
                     .then(res => res.json())  // ✅ First, parse JSON
                     .then(data => {
                         toast.success(`Order placed successfully: ${data.message || "Success"}`);
-                        router.push("/order-bag")
+                        router.push("/pending")
                         hideLoading()
                     })
                     .catch(error => {
