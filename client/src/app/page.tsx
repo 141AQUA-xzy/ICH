@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { io } from "socket.io-client";
 import { HomeNav } from "../../public/components/nav/home/Home.nav";
 import { MenuPage } from "../../public/components/nav/menu/Menu.nav";
@@ -22,7 +22,7 @@ export default function Home() {
     }
   }, [user])
 
-  const { view, setView } = useView()
+  const { view } = useView()
 
   const socket = io("http://localhost:5000");//Connecting Server-Client by putting backend server URI
 
