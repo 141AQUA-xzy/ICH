@@ -2,20 +2,22 @@
 
 import { useEffect, useState } from "react";
 
+type BeforeInstallPromptEvent = Event & {
+    prompt: () => void;
+    userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+};
+
 const DownloadPage = () => {
-    const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+    const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
     const [isPWAInstalled, setIsPWAInstalled] = useState(false);
 
     useEffect(() => {
-        // Listen for the beforeinstallprompt event
-        const handleBeforeInstallPrompt = (event: any) => {
+        const handleBeforeInstallPrompt = (event: BeforeInstallPromptEvent) => {
             event.preventDefault(); // Prevent auto-popup
             setDeferredPrompt(event);
         };
 
         window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-
-        // Detect if PWA is already installed
         window.addEventListener("appinstalled", () => {
             setIsPWAInstalled(true);
             setDeferredPrompt(null);
@@ -30,14 +32,14 @@ const DownloadPage = () => {
     // Function to trigger PWA installation
     const installPWA = () => {
         if (deferredPrompt) {
-            deferredPrompt.prompt(); // Show install prompt
-            deferredPrompt.userChoice.then((choice: any) => {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choice) => {
+                setDeferredPrompt(null);
                 if (choice.outcome === "accepted") {
                     console.log("User installed the app");
                 } else {
                     console.log("User dismissed the installation");
                 }
-                setDeferredPrompt(null);
             });
         }
     };
@@ -63,6 +65,7 @@ const DownloadPage = () => {
 };
 
 export default DownloadPage;
+
 
 
 // "use client";
