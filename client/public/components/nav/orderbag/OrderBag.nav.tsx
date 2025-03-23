@@ -54,7 +54,7 @@ const OrderBag = () => {
 
     const socket = io("http://localhost:5000")
 
-    const { cartTotal, addToCart, cart, cartItemCount, clearCart, removeFromCart, updateQuantity } = useCart()
+    const { cartTotal, addToCart, cart, cartItemCount, removeFromCart, updateQuantity } = useCart()
     const [loading, setLoading] = useState(false)
     return loading ? (
         <PayLoading />

@@ -1,5 +1,4 @@
 import React from 'react'
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { fonts } from '../fonts/Next.fonts';
 import { Toaster } from 'react-hot-toast';
 
