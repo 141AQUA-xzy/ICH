@@ -74,7 +74,6 @@ const PayQR: React.FC = () => {
             </div>
             <kbd className="text-amber-400">OR</kbd>
             <a href={upiLink} target="_blank" rel="noopener noreferrer" className="w-1/2 font-extrabold text-amber-300 text-center rounded-lg text-3xl" style={{ boxShadow: "0px 0px 20px 1px #FCA311" }} onClick={async () => {
-                socket.emit("client->server", cart)
                 showLoading()
                 await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
                     method: "POST", // ✅ Make sure this is POST
