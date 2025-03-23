@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react";
 
+// Define BeforeInstallPromptEvent manually
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
+
 export default function DownloadPage() {
   const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [isInstalled, setIsInstalled] = useState<boolean>(false);
@@ -32,7 +38,7 @@ export default function DownloadPage() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold">Install ICH</h1>
+      <h1 className="text-2xl font-bold">Install My PWA</h1>
 
       {isInstalled ? (
         <p className="text-green-500">App is already installed!</p>
