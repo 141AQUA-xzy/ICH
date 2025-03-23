@@ -5,7 +5,6 @@ import { ViewProvider } from "../../public/context/View.ctx";
 import { CartProvider } from "../../public/context/Cart.ctx";
 import { UserProvider } from "../../public/context/Session.ctx";
 import { LoadingProvider } from "../../public/context/Loading.ctx";
-import PWARegister from "../../client/components/PWARegister";
  // Import Client Component
 
 const geistSans = Geist({
@@ -46,7 +45,6 @@ export default function RootLayout({
               <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
               >
-                <PWARegister /> {/* Include the Client Component here */}
                 {children}
               </body>
             </html>
