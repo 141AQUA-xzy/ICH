@@ -4,7 +4,6 @@ import { useRef } from "react";
 import { ICHSvg } from "../../../public/components/ICH.hero";
 import { fonts } from "../../../public/fonts/Next.fonts";
 import { useCart } from "../../../public/context/Cart.ctx";
-import { io } from "socket.io-client";
 import { useUser } from "../../../public/context/Session.ctx";
 import { toast, Toaster } from "react-hot-toast";
 import { useRouter } from "next/navigation";
@@ -57,10 +56,6 @@ const PayQR: React.FC = () => {
         }
     };
 
-    const socket = io("http://192.168.43.106:5000", {
-        // secure: true, // Ensures HTTPS
-        // transports: ["websocket"],
-    })
 
     return (isLoading ? <Loading /> : (
         <search className="h-dvh flex flex-col items-center justify-center gap-4 bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)]">
