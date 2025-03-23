@@ -1,66 +1,47 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 
-const DownloadPage = () => {
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
-  const [isPWAInstalled, setIsPWAInstalled] = useState(false);
+export default function DownloadPage() {
+  const [downloadAvailable, setDownloadAvailable] = useState<boolean>(false);
 
-  useEffect(() => {
-    // Listen for the beforeinstallprompt event
-    const handleBeforeInstallPrompt = (event: any) => {
-      event.preventDefault(); // Prevent auto-popup
-      setDeferredPrompt(event);
-    };
-
-    window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-
-    // Detect if PWA is already installed
-    window.addEventListener("appinstalled", () => {
-      setIsPWAInstalled(true);
-    });
-
-    return () => {
-      window.removeEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
-      window.removeEventListener("appinstalled", () => setIsPWAInstalled(true));
-    };
-  }, []);
-
-  // Function to trigger PWA installation
-  const installPWA = () => {
-    if (deferredPrompt) {
-      deferredPrompt.prompt(); // Show install prompt
-      deferredPrompt.userChoice.then((choice: any) => {
-        if (choice.outcome === "accepted") {
-          console.log("User installed the app");
-        } else {
-          console.log("User dismissed the installation");
-        }
-        setDeferredPrompt(null);
-      });
+  // Fix fetch function type
+  const checkForUpdate = async (): Promise<{ version: string } | null> => {
+    try {
+      const response = await fetch("/api/version");
+      if (!response.ok) throw new Error("Failed to fetch version");
+      return (await response.json()) as { version: string };
+    } catch (error) {
+      console.error("Error fetching version:", error);
+      return null;
     }
   };
 
-  return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 text-center">
-      <h1 className="text-3xl font-bold">Install Our PWA</h1>
-      <p className="text-gray-600 mt-2">Get the best experience by installing our app.</p>
+  useEffect(() => {
+    checkForUpdate().then((data) => {
+      if (data) setDownloadAvailable(true);
+    });
+  }, []);
 
-      {isPWAInstalled ? (
-        <p className="mt-4 text-green-600">✅ PWA is already installed</p>
-      ) : deferredPrompt ? (
+  // Fix event type
+  const handleDownload = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    window.location.href = "/download/app.apk";
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center h-screen">
+      <h1 className="text-2xl font-bold">Download My PWA</h1>
+      {downloadAvailable ? (
         <button
-          onClick={installPWA}
-          className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-md shadow-lg hover:bg-blue-700"
+          className="mt-4 px-6 py-2 bg-blue-500 text-white rounded"
+          onClick={handleDownload}
         >
-          Install App
+          Download App
         </button>
       ) : (
-        <p className="mt-4 text-red-500">❌ PWA installation is not supported on this device.</p>
+        <p className="text-gray-500">Checking for updates...</p>
       )}
     </div>
   );
-};
-
-export default DownloadPage;
-
+}
