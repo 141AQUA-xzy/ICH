@@ -56,12 +56,6 @@ const PayQR: React.FC = () => {
             alert("Sharing not supported on this device.");
         }
     };
-
-    const socket = io("http://192.168.43.106:5000", {
-        // secure: true, // Ensures HTTPS
-        // transports: ["websocket"],
-    })
-
     return (isLoading ? <Loading /> : (
         <search className="h-dvh flex flex-col items-center justify-center gap-4 bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)]">
             <Toaster position="bottom-center" reverseOrder={false} />
@@ -73,10 +67,9 @@ const PayQR: React.FC = () => {
                 <QRCodeCanvas value={upiLink} size={250} />
             </div>
             <kbd className="text-amber-400">OR</kbd>
-            <a href={upiLink} target="_blank" rel="noopener noreferrer" className="w-1/2 font-extrabold text-amber-300 text-center rounded-lg text-3xl" style={{ boxShadow: "0px 0px 20px 1px #FCA311" }} onClick={async () => {
-                socket.emit("client->server", cart)
+            <a href={upiLink} className="w-1/2 font-extrabold text-amber-300 text-center rounded-lg text-3xl" style={{ boxShadow: "0px 0px 20px 1px #FCA311" }} onClick={async () => {
                 showLoading()
-                await fetch("http://192.168.43.106:5000/admin/create_order", {
+                await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
                     method: "POST", // ✅ Make sure this is POST
                     headers: {
                         "Content-Type": "application/json" // ✅ Important for JSON data
@@ -109,7 +102,7 @@ const PayQR: React.FC = () => {
             <kbd className="text-amber-400">OR</kbd>
             <button className="text-amber-300 border border-amber-300 p-2 rounded-2xl font-extrabold uppercase" onClick={async () => {
                 showLoading()
-                await fetch("http://192.168.43.106:5000/admin/create_order", {
+                await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
                     method: "POST", // ✅ Make sure this is POST
                     headers: {
                         "Content-Type": "application/json" // ✅ Important for JSON data
@@ -125,7 +118,7 @@ const PayQR: React.FC = () => {
                     .then(res => res.json())  // ✅ First, parse JSON
                     .then(data => {
                         toast.success(`Order placed successfully: ${data.message || "Success"}`);
-                        router.push("/order-bag")
+                        router.push("/pending")
                         hideLoading()
                     })
                     .catch(error => {
