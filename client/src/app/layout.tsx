@@ -41,6 +41,13 @@ export default function RootLayout({
               <head>
                 <link rel="manifest" href="/manifest.json" />
                 <meta name="theme-color" content="#000000" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="mobile-web-app-capable" content="yes" />
+
+          {/* Fallback Icons for Apple Devices */}
+          <link rel="apple-touch-icon" sizes="192x192" href="/icons/android-chrome-192x192.png" />
+          <link rel="apple-touch-icon" sizes="512x512" href="/icons/android-chrome-512x512.png" />
+      
               </head>
               <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
