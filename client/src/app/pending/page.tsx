@@ -34,9 +34,12 @@ const PendingApproval = () => {
 
                 await response.json(); // ✅ Parse JSON response if needed
                 hideLoading();
-            } catch (error: unknown) {
-                toast.error(`Order failed`);
-            }
+            }catch (error: unknown) {
+    if (error instanceof Error) {
+        toast.error(`Order failed: ${error.message}`);
+    } else {
+        toast.error("Order failed: An unknown error occurred");
+    }
         }
 
         ExecuteOrder(); // ✅ Call the function inside useEffect
