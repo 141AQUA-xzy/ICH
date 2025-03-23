@@ -91,6 +91,7 @@ const PayQR: React.FC = () => {
                 })
                     .then(res => res.json())  // ✅ First, parse JSON
                     .then(data => {
+                        console.log("Order Response:", data);
                         hideLoading()
                     })
                     .catch(error => {
