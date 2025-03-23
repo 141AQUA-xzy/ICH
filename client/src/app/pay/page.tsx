@@ -17,7 +17,7 @@ const PayQR: React.FC = () => {
     const { cartTotal, cart } = useCart()
     const { user } = useUser()
 
-    const callbackUrl = encodeURIComponent("http://192.168.43.106:3000/pending");
+    const callbackUrl = encodeURIComponent("https://ich-client.vercel.app/pending");
     const upiLink = `upi://pay?pa=sudeshsatpute0@okicici&pn=Sudesh&am=${cartTotal}&cu=INR&url=${callbackUrl}`;
 
     // const upiLink = `upi://pay?pa=sudeshsatpute0@okicici&am=${cartTotal}&cu=INR`
