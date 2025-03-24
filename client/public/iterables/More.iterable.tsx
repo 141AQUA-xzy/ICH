@@ -10,23 +10,10 @@ import SensorOccupiedIcon from '@mui/icons-material/SensorOccupied';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import PolicyIcon from '@mui/icons-material/Policy';
-import { toast } from "react-hot-toast";
 import RateReviewIcon from '@mui/icons-material/RateReview';
 
-// Toast function for notifications
-const Toast = (message: string, icon: string) => {
-  toast.success(message, {
-    duration: 4000,
-    style: {
-      fontWeight: 600,
-      background: "#FCA331",
-      borderRadius: "25px",
-    },
-    icon,
-  });
-};
 
-export const MoreIterator = (router: any, logout: () => void, clearCart: () => void) => [
+export const MoreIterator = (router: any, logout: (_id?: string) => void, clearCart: () => void, _id?: string) => [
   {
     title: "My Profile",
     icon: PersonPinIcon, // ✅ Pass the component reference, NOT JSX
@@ -108,9 +95,9 @@ export const MoreIterator = (router: any, logout: () => void, clearCart: () => v
     title: "Logout",
     icon: LogoutIcon, // ✅ Pass the component reference, NOT JSX
     handleClick: () => {
+      localStorage.removeItem("ICHUser")
       clearCart()
-      logout()
-      toast.success("Logged Out")
+      logout(_id)
       router.push("/user"); // ✅ Redirect to `/user`
     }
   },

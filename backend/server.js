@@ -51,10 +51,11 @@ io.on("connection", (socket) => {
 app.use("/client", router);
 app.use("/admin", routing);
 // Start Server
-server.listen(PORT, "0.0.0.0", () => {
+server.listen(PORT, () => {
   connectDB();
   console.log(`✅ Server is running on port ${PORT}`);
-});
+});    
+
 
 // // 1️⃣ Import Required Packages
 // // iport express from "express";

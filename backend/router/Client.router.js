@@ -5,6 +5,7 @@ import {
   GetMenu,
   GetMyOrders,
   GetReviews,
+  LogoutUser,
   UpdateUser,
 } from "../controller/Client.controls.js";
 
@@ -21,5 +22,7 @@ router.get("/menu-list", GetMenu);
 router.get("/reviews",GetReviews)
 
 router.post("/myOrders",GetMyOrders)
+
+router.delete("/:id/logout",LogoutUser)
 
 export default router;

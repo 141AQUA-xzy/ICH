@@ -8,13 +8,14 @@ interface User {
   contact: string;
   location: string;
   ip: string | null;
+  _id: string | null
 }
 
 // Define the context type
 interface UserContextType {
   user: User | null;
   login: (userData: User) => void;
-  logout: () => void;
+  logout: (_id?: string) => Promise<void>;
   updateUser: (updatedFields: Partial<User>) => void;
 }
 
@@ -32,7 +33,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (userData: User) => {
-    toast.loading("Logging In")
     try {
       const response = await fetch("https://ich-1gjz.onrender.com/client/create_user", {
         method: "POST",
@@ -49,7 +49,6 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       const data = await response.json();
       toast.success(`Welcome ${data.username}`)
 
-
       setUser(data);
       localStorage.setItem("ICHuser", JSON.stringify(data));
 
@@ -59,10 +58,38 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const logout = () => {
-    setUser(null);
-    localStorage.removeItem("ICHuser");
-  };
+  const logout = async (_id?: string) => {
+    if (!_id) {
+      toast.error("No user ID provided for logout");
+      return;
+    }
+
+    try {
+      // ✅ Ensure fetch request uses `_id` directly
+      const response = await fetch(`https://ich-1gjz.onrender.com/client/${_id}/logout`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      toast.success("Logged Out")
+
+      // ✅ Remove user from local storage *after* successful API call
+      localStorage.removeItem("ICHuser");
+      setUser(null); // ✅ Update state after logout
+
+      // ✅ Show success toast
+    } catch (error: any) {
+      console.error("Error sending data:", error);
+      toast.error("Error Occurred");
+    }
+};
+
 
   // Function to update user details
   const updateUser = (updatedFields: Partial<User>) => {

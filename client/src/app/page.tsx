@@ -20,7 +20,7 @@ export default function Home() {
     if (!user) {
       router.push("/user")
     }
-  }, [user])
+  }, [])
 
   const { view } = useView()
 

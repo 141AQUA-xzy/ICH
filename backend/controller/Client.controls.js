@@ -1,7 +1,6 @@
 import { User } from "../dB/modals/User.modal.js";
 import { Review } from "../dB/modals/Review.modal.js";
 import { Item } from "../dB/modals/Item.modal.js";
-import { OrderBook } from "./Admin.controls.js";
 import { Order } from "../dB/modals/Orders.modal.js";
 
 export const CreateUser = async (req, res) => {
@@ -84,3 +83,27 @@ export const GetMyOrders = async (req, res) => {
   const { customer } = req.body;
   return res.json(await Order.find({ customer }));
 };
+export const LogoutUser = async (req, res) => {
+  try {
+    const { id } = req.params; // Get user ID from URL
+
+    if (!id) {
+      return res.status(400).json({ message: "User ID is required" });
+    }
+
+    // Find and delete the user
+    const deletedUser = await User.findByIdAndDelete(id);
+
+    if (!deletedUser) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    return res.status(200).json({ message: `User ${id} logged out and deleted successfully` });
+  } catch (error) {
+    console.error("Error logging out and deleting user:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+
+
