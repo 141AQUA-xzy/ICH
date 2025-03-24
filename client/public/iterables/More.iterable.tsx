@@ -96,6 +96,7 @@ export const MoreIterator = (router: any, logout: (_id?: string) => void, clearC
     icon: LogoutIcon, // ✅ Pass the component reference, NOT JSX
     handleClick: () => {
       localStorage.removeItem("ICHUser")
+      localStorage.removeItem("cart")
       clearCart()
       logout(_id)
       router.push("/user"); // ✅ Redirect to `/user`
