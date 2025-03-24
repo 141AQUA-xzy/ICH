@@ -80,7 +80,7 @@ const Page = () => {
         if (!name || !contact || !location) return Toast("Fill Out First !!", "🤖");
 
         if (isValidIndianNumber(contact)) {
-            login({ name, contact, location });
+            login({ username:name, contact, location ,ip});
             setView("Home")
             socket.emit("client->server", { name, contact, location, ip})
             Toast(`You are now a member`, "🎆");

@@ -1,12 +1,13 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-
+import toast from "react-hot-toast";
 // Define the user data type
 interface User {
-  name: string;
+  username: string;
   contact: string;
   location: string;
+  ip: string | null;
 }
 
 // Define the context type
@@ -30,9 +31,32 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   }, []);
 
-  const login = (userData: User) => {
-    setUser(userData);
-    localStorage.setItem("ICHuser", JSON.stringify(userData));
+  const login = async (userData: User) => {
+    toast.loading("Logging In")
+    try {
+      const response = await fetch("https://ich-1gjz.onrender.com/client/create_user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      toast.success(`Welcome ${data.username}`)
+
+
+      setUser(data);
+      localStorage.setItem("ICHuser", JSON.stringify(data));
+
+    } catch (error) {
+      console.error("Error sending data:", error);
+      toast.error(`${error}`)
+    }
   };
 
   const logout = () => {

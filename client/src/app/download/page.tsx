@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { ICHSvg } from "../../../public/components/ICH.hero";
 
 // Define BeforeInstallPromptEvent properly
 interface BeforeInstallPromptEvent extends Event {
@@ -46,8 +47,8 @@ const DownloadPage = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-            <h1 className="text-2xl font-bold mb-4">Install ICH</h1>
-
+            <search className="relative h-64 w-6xl p-0 flex justify-center items-center"><ICHSvg /></search>
+            <h1 className="text-3xl font-bold mb-4">Install ICH</h1>
             {isPWAInstalled ? (
                 <p className="text-green-400">✅ ICH is already installed!</p>
             ) : deferredPrompt ? (
