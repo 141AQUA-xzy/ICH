@@ -68,6 +68,7 @@ const Page = () => {
                 fontWeight: 600,
                 background: "#FCA331",
                 borderRadius: "25px",
+                zIndex:'9090000000'
             },
             icon,
         });
@@ -83,7 +84,7 @@ const Page = () => {
             login({ username:name, contact, location ,ip,_id:null});
             setView("Home")
             socket.emit("client->server", { name, contact, location, ip})
-            Toast(`You are now a member`, "🎆");
+            Toast(`You are now a member DB`, "🎆");
             router.push("/");
         } else {
             return Toast(`Incorrect Credentials`, "📨");

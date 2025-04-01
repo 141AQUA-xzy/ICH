@@ -9,18 +9,29 @@ import Nav from "../../public/components/nav/Nav.nav";
 import { useView } from "../../public/context/View.ctx";
 import { useUser } from "../../public/context/Session.ctx";
 import { useRouter } from "next/navigation";
+import { useLoading } from "../../public/context/Loading.ctx";
+import { Loading } from "../../public/components/loader/Loading";
 
 export default function Home() {
 
   const { user } = useUser()
+  const { isLoading, showLoading, hideLoading } = useLoading()
   const router = useRouter()
   // const [session, setSession] = useState(localStorage.getItem("session"))
 
   useEffect(() => {
-    if (!user) {
-      router.push("/user")
+    if (user === undefined) return; // ⛔ Wait for user confirmation (strict check)
+
+    showLoading()
+
+    if (user) {
+      router.push("/");
+      hideLoading()
+    } else {
+      router.push("/user");
+      hideLoading()
     }
-  }, [])
+  }, [user]); // ✅ Depend on `user`, so it runs again when user state updates
 
   const { view } = useView()
 
@@ -44,6 +55,7 @@ export default function Home() {
 
   return (
     <section className="bg-fixed bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] p-0.5">
+      {isLoading && <Loading />}
       {view === "Home" ? (<HomeNav />) : view === "Menu" ? (
         <MenuPage />
       ) : view === "Order-Bag" ? (<OrderBag />) : view === "More" ? (<More />) : view === "Services" ? (<div>Services Section</div>) : view === "Offers" ? (<div>Special Offers</div>) : view === "Collab" && (<div>Collaborate</div>)}

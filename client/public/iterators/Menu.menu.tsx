@@ -12,6 +12,7 @@ import { mainCourseDalData, mainCourseRiceData, mainCourseSabjiData, raitaData, 
 import { chineseRiceMenu, chineseStarterMenu, momoMenu, pastaMenu, wokChineseMenu } from '../iterables/FusionBites';
 import CallIcon from '@mui/icons-material/Call';
 import { Toaster, toast } from "react-hot-toast";
+import { useMenu } from '../context/Menu.ctx';
 
 // Define data dynamically
 const studentThaliData = {
@@ -77,6 +78,8 @@ const premiumThaliData = {
 };
 
 export const Explore = () => {
+
+  const {menu} = useMenu()
 
   const { addToCart, cart, cartItemCount, cartTotal, clearCart, removeFromCart, updateQuantity } = useCart()
 

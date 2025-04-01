@@ -9,14 +9,13 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import { useView } from '../../../context/View.ctx';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import { text } from 'stream/consumers';
-import EditIcon from '@mui/icons-material/Edit';
 import { fonts } from '../../../fonts/Next.fonts';
-import Link from 'next/link';
 import { useUser } from '../../../context/Session.ctx';
+import { useLoading } from '../../../context/Loading.ctx';
 
 export const HomeNav = () => {
 
+    const {showLoading,hideLoading,isLoading} = useLoading()
     const { menu, setView, setMenu, view } = useView()
     const { user } = useUser()
     // Define an array of carousel items
@@ -106,9 +105,6 @@ export const HomeNav = () => {
                                 <code className={`${fonts.cinzel} w-full text-2xl`}>{user?.username}</code>
                                 <kbd className='w-full text-lg'>+91<kbd className=''>{user?.contact}</kbd></kbd>
                                 <address className='w-full text-sm line-clamp-1'>{user?.location}</address>
-                                <Link href="/user">
-                                    <EditIcon className='absolute right-10 bottom-0 border rounded-full p-1' />
-                                </Link>
                             </div>
                         </search>)}
                         <search className="h-full w-dvw grow bg-black rounded-2xl"></search>

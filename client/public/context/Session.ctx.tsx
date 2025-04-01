@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import toast from "react-hot-toast";
+import { useLoading } from "./Loading.ctx";
 // Define the user data type
 interface User {
   username: string;
@@ -23,6 +24,7 @@ interface UserContextType {
 const UserContext = createContext<UserContextType | undefined>(undefined);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
+  const { hideLoading, isLoading, showLoading } = useLoading()
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -33,6 +35,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const login = async (userData: User) => {
+    showLoading()
     try {
       const response = await fetch("https://ich-1gjz.onrender.com/client/create_user", {
         method: "POST",
@@ -47,10 +50,15 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       }
 
       const data = await response.json();
+      if (data.username === undefined) {
+        toast("Unstable Internet Connectivity")
+      }
       toast.success(`Welcome ${data.username}`)
 
       setUser(data);
       localStorage.setItem("ICHuser", JSON.stringify(data));
+
+      hideLoading()
 
     } catch (error) {
       console.error("Error sending data:", error);
@@ -59,6 +67,21 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const logout = async (_id?: string) => {
+
+    // Toast function for notifications
+    const Toast = (message: string, icon: string) => {
+      toast.success(message, {
+        duration: 4000,
+        style: {
+          fontWeight: 600,
+          background: "#FCA331",
+          borderRadius: "25px",
+          zIndex: '9090000000'
+        },
+        icon,
+      });
+    };
+
     if (!_id) {
       toast.error("No user ID provided for logout");
       return;
@@ -66,7 +89,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
     try {
       // ✅ Ensure fetch request uses `_id` directly
-      const response = await fetch(`https://ich-1gjz.onrender.com/client/${_id}/logout`, {
+      // ✅ Remove user from local storage *after* successful API call
+      setUser(null); // ✅ Update state after logout
+
+      const response = await fetch(`http://localhost:5000/client/${_id}/logout`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -76,19 +102,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
-
-      toast.success("Logged Out")
-
-      // ✅ Remove user from local storage *after* successful API call
-      localStorage.removeItem("ICHuser");
-      setUser(null); // ✅ Update state after logout
+      Toast("Logged Out","🤖")
 
       // ✅ Show success toast
     } catch (error: any) {
       console.error("Error sending data:", error);
       toast.error("Error Occurred");
     }
-};
+  };
 
 
   // Function to update user details

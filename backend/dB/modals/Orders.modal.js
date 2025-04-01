@@ -12,9 +12,10 @@ const cartItemSchema = new Schema({
 const orderSchema = new Schema(
   {
     customer: {
-      name: { type: String, required: true },
+      username: { type: String, required: true },
       contact: { type: String, required: true },
       location: { type: String, required: true },
+      _id: { type: String, required: true }
     },
     cart: [cartItemSchema], // ✅ Store cart items as an array of objects
     total: { type: Number, required: true }, // ✅ Add total amount field

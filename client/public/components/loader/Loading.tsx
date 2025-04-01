@@ -9,6 +9,6 @@ export const PayLoading = () => {
 export const Loading = () => {
 
     return (
-        <div className='h-dvh w-full bg-[#FCA331] text-black flex items-center justify-center'>Loading...</div>
+        <div className='h-dvh w-full absolute z-[10000000] bg-[#FCA331] text-black flex items-center justify-center'>Loading...</div>
     )
 }

@@ -1,7 +1,7 @@
 import { User } from "../dB/modals/User.modal.js";
 import { Review } from "../dB/modals/Review.modal.js";
-import { Item } from "../dB/modals/Item.modal.js";
 import { Order } from "../dB/modals/Orders.modal.js";
+import Menu from "../dB/modals/Menu.modal.js";
 
 export const CreateUser = async (req, res) => {
   try {
@@ -73,7 +73,7 @@ export const CreateReview = async (req, res) => {
   return res.json({ review, message: "Review Added" });
 };
 export const GetMenu = async (req, res) => {
-  const MenuList = await Item.find({});
+  const MenuList = await Menu.find({});
   res.json(MenuList);
 };
 export const GetReviews = async (req, res) => {

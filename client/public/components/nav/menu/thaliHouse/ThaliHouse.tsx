@@ -1,3 +1,4 @@
+import { useMenu } from "../../../../context/Menu.ctx";
 import { fonts } from "../../../../fonts/Next.fonts";
 import React from "react";
 
@@ -11,7 +12,7 @@ const ThaliItems: React.FC<ThaliItemProps> = ({ image, name }) => {
     return (
         <div className="h-auto w-full flex flex-col rounded-2xl">
             <img className="" src={image} alt={name} />
-            <p className="w-full bg-[#14213d] text-[#FCA331] text-center rounded-b-lg">{name}</p>
+            <p className={`${fonts.cinzel} w-full bg-[#14213d] text-[#FCA331] text-center rounded-b-lg`}>{name}</p>
         </div>
     );
 };
@@ -32,6 +33,9 @@ interface ThaliHouseProps {
 }
 
 const ThaliHouse: React.FC<ThaliHouseProps> = ({ title, items, banner, prices, onStandardClick, onUltimateClick }) => {
+    const { menu } = useMenu();
+    const standardPrice = menu[title.toUpperCase()]?.["price-hf"] ?? 0;
+    const ultimatePrice = menu[title.toUpperCase()]?.["price-fl"] ?? 0;
     return (
         <section className="w-dvw h-[50vh] flex relative">
             <h2 className={`absolute z-10 w-full bg-[#FCA331] text-2xl p-2 rounded-t-2xl ${fonts.zillaSlab}`}>
@@ -46,10 +50,10 @@ const ThaliHouse: React.FC<ThaliHouseProps> = ({ title, items, banner, prices, o
                 <img className="rounded-b-2xl relative top-10" src={banner} alt="Thali Banner" />
                 <div className="flex w-full h-max px-1 pb-2 justify-evenly gap-2">
                     <button onClick={onStandardClick} className="text-sm rounded-lg bg-[#FCA331] grow">
-                        ADD STD-<kbd className="text-3xl">₹{prices.standard}</kbd>
+                        ADD STD-<kbd className="text-3xl">₹{standardPrice}</kbd>
                     </button>
                     <button onClick={onUltimateClick} className="text-sm rounded-lg bg-[#FCA331] grow">
-                        ADD ULT-<kbd className="text-3xl">₹{prices.ultimate}</kbd>
+                        ADD ULT-<kbd className="text-3xl">₹{ultimatePrice}</kbd>
                     </button>
                 </div>
             </div>

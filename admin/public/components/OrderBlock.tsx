@@ -13,7 +13,7 @@ export interface CartItem {
 
 export interface OrderProps {
     customer: {
-        name: string;
+        username: string;
         contact: string;
         location: string;
     };
@@ -28,7 +28,7 @@ const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
     return (
         <div className="p-4 bg-white shadow-md rounded-lg">
             <h3 className="text-lg font-bold text-gray-800">
-                Order for: {order.customer.name}
+                Order for: {order.customer.username}
             </h3>
             <p className="text-sm text-gray-600">
                 📍 {order.customer.location} | 📞 {order.customer.contact}
@@ -37,7 +37,7 @@ const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
                 {order.cart.map((item, index) => (
                     <div key={index} className="flex justify-between border-b py-1">
                         <span className="font-medium">{item.itemName}-[{item.code}]</span>
-                        <span className="text-sm">x{item.quantity}</span>
+                        <span className="text-sm">x<code className="text-lg">{item.quantity}</code></span>
                         <span className="font-semibold">₹{item.price * item.quantity}</span>
                     </div>
                 ))}

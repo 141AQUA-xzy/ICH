@@ -1,4 +1,5 @@
 import { Item } from "../dB/modals/Item.modal.js";
+import Menu from "../dB/modals/Menu.modal.js";
 import { Order } from "../dB/modals/Orders.modal.js";
 import { Review } from "../dB/modals/Review.modal.js";
 
@@ -100,7 +101,7 @@ export const Pricing = (req, res) => {};
 
 export const OrderStatus = async (req, res) => {
   try {
-    const { orderId,status } = req.body; // Assuming order ID is sent from frontend
+    const { orderId, status } = req.body; // Assuming order ID is sent from frontend
 
     if (!orderId) {
       return res.status(400).json({ error: "Order ID is required" });
@@ -122,3 +123,50 @@ export const OrderStatus = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+export const MenuControl = async (req, res) => {
+  try {
+    const { menu } = req.body;
+
+    if (!menu) {
+      return res.status(400).json({ message: "Menu data is required" });
+    }
+
+    // ✅ Save or update menu with `AVL` status
+    const updatedMenu = await Menu.findOneAndUpdate(
+      {_id:"67e3bb0bdb3bfe9b72131166"},
+      { menu }, // ✅ Updates full menu including `AVL`
+      { new: true, upsert: true }
+    );
+
+    res.json({ success: true, menu: updatedMenu.menu });
+  } catch (error) {
+    console.error("❌ Error updating menu:", error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+//edit existing
+
+// export const MenuControl = async (req, res) => {
+//   try {
+//     const { menu } = req.body;
+
+//     if (!menu || Object.keys(menu).length === 0) {
+//       return res.status(400).json({ message: "Menu data is required" });
+//     }
+
+//     const existingMenu = await Menu.findOne();
+//     if (existingMenu) {
+//       existingMenu.menu = menu; // ✅ Update existing menu
+//       await existingMenu.save();
+//       return res.status(200).json({ message: "Menu updated successfully", menu: existingMenu });
+//     } else {
+//       const newMenu = new Menu({ menu });
+//       await newMenu.save();
+//       return res.status(201).json({ message: "Menu saved successfully", menu: newMenu });
+//     }
+//   } catch (error) {
+//     console.error("❌ Error saving/updating menu:", error);
+//     res.status(500).json({ message: "Internal server error" });
+//   }
+// };
