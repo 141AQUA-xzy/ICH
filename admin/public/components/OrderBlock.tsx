@@ -19,7 +19,7 @@ export interface OrderProps {
     };
     cart: CartItem[];
     total: number;
-    payment_status?: string;
+    payment_status?: "PAID" | "POD";
     order_status?: string;
     _id: string
 }
@@ -36,14 +36,14 @@ const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
             <div className="mt-2">
                 {order.cart.map((item, index) => (
                     <div key={index} className="flex justify-between border-b py-1">
-                        <span className="font-medium">{item.itemName}-[{item.code}]</span>
-                        <span className="text-sm">x<code className="text-lg">{item.quantity}</code></span>
+                        <span className="font-medium">{item.itemName}</span>
+                        <span className="text-sm">[{item.code}]x<code className="text-lg">{item.quantity}</code></span>
                         <span className="font-semibold">₹{item.price * item.quantity}</span>
                     </div>
                 ))}
             </div>
             <div className="mt-2 text-right">
-                <p className={`text-sm ${order.payment_status === "PAID" ? "text-green-600" : "text-red-600"}`}>
+                <p className={`text-sm ${order.payment_status === "PAID" && "text-green-600"} ${order.payment_status === "POD" && "text-red-600"}`}>
                     <EventAvailableIcon /> {order.payment_status || "Pending"}
                 </p>
                 <p className="font-semibold text-lg">Total: ₹{order.total}</p>

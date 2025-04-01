@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../../../public/context/Session.ctx";
 import Link from "next/link";
+import { useCart } from "../../../public/context/Cart.ctx";
 
 const MyOrders = () => {
     const [orders, setOrders] = useState([]);
@@ -42,8 +43,8 @@ const MyOrders = () => {
             <h2 className="text-white">My Orders</h2>
             {orders.length === 0 ? (
                 <div className="h-dvh w-full flex flex-col items-center justify-center">
-                <p className="text-white">No orders found.</p>
-                <Link href="/" className="bg-amber-400 rounded-2xl text-black p-2">GO BACK</Link>
+                    <p className="text-white">No orders found.</p>
+                    <Link href="/" className="bg-amber-400 rounded-2xl text-black p-2">GO BACK</Link>
                 </div>
             ) : (
                 <div className="w-full bg-amber-400">

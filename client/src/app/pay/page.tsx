@@ -83,8 +83,11 @@ const PayQR: React.FC = () => {
                 })
                     .then(res => res.json())  // ✅ First, parse JSON
                     .then(data => {
-                        console.log("Order Response:", data);
+                        toast.success(`Order placed successfully: ${data.message || "Success"}`);
                         hideLoading()
+                        setTimeout(() => {
+                            router.push("/pending")
+                        }, 5000);
                     })
                     .catch(error => {
                         toast.error(`Order failed: ${error.message}`);
@@ -101,7 +104,7 @@ const PayQR: React.FC = () => {
             <kbd className="text-amber-400">OR</kbd>
             <button className="text-amber-300 border border-amber-300 p-2 rounded-2xl font-extrabold uppercase" onClick={async () => {
                 showLoading()
-                await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
+                await fetch("http://localhost:5000/admin/create_order", {
                     method: "POST", // ✅ Make sure this is POST
                     headers: {
                         "Content-Type": "application/json" // ✅ Important for JSON data
@@ -117,8 +120,10 @@ const PayQR: React.FC = () => {
                     .then(res => res.json())  // ✅ First, parse JSON
                     .then(data => {
                         toast.success(`Order placed successfully: ${data.message || "Success"}`);
-                        router.push("/pending")
                         hideLoading()
+                        setTimeout(() => {
+                            router.push("/pending")
+                        }, 5000);
                     })
                     .catch(error => {
                         toast.error(`Order failed: ${error.message}`);

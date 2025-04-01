@@ -19,8 +19,8 @@ const orderSchema = new Schema(
     },
     cart: [cartItemSchema], // ✅ Store cart items as an array of objects
     total: { type: Number, required: true }, // ✅ Add total amount field
-    payment_status: String,
-    order_status: String,
+    payment_status: "PAID" | "POD",
+    order_status: "DECLINED" | "APPROVED" | "DELIVERED",
   },
   { timestamps: true }
 ); // ✅ Automatically add createdAt & updatedAt timestamps
