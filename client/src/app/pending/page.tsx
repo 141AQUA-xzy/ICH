@@ -16,7 +16,7 @@ const PendingApproval = () => {
     useEffect(() => {
         const ExecuteOrder = async () => {
             try {
-                const response = await fetch("http://192.168.43.106:5000/admin/create_order", {
+                const response = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",

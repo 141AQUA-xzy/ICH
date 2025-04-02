@@ -24,7 +24,7 @@ export const CreateOrder = async (req, res) => {
 
     console.log("✅ New Order Created:", newOrder);
 
-    res.status(201).json({ message: "Order created & notifications sent!" });
+    res.status(201).json({ message: "Order created" });
   } catch (error) {
     console.error("❌ Order Creation Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
