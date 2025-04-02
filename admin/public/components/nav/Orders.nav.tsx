@@ -14,7 +14,7 @@ export const Orders = () => {
         showLoading()
         const fetchOrders = async () => {
             try {
-                const response = await fetch("http://192.168.43.106:5000/admin/order-book", {
+                const response = await fetch("https://ich-1gjz.onrender.com/admin/order-book", {
                     method: "GET", // ✅ Use POST if sending user details
                     headers: {
                         "Content-Type": "application/json",
