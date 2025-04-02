@@ -15,12 +15,16 @@ const orderSchema = new Schema(
       username: { type: String, required: true },
       contact: { type: String, required: true },
       location: { type: String, required: true },
-      _id: { type: String, required: true }
+      _id: { type: String, required: true },
     },
     cart: [cartItemSchema], // ✅ Store cart items as an array of objects
     total: { type: Number, required: true }, // ✅ Add total amount field
-    payment_status: "PAID" | "POD",
-    order_status: "DECLINED" | "APPROVED" | "DELIVERED",
+    payment_status: { type: String, enum: ["PAID", "POD"], required: true }, // ✅ Proper enum usage
+    order_status: {
+      type: String,
+      enum: ["DECLINED", "APPROVED", "DELIVERED", "PENDING",'CROSS-CHECK'], // ✅ Proper enum usage
+      required: true,
+    },
   },
   { timestamps: true }
 ); // ✅ Automatically add createdAt & updatedAt timestamps

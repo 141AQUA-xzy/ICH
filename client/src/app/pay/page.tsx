@@ -78,7 +78,7 @@ const PayQR: React.FC = () => {
                         customer: user,     // ✅ Send customer data
                         total: cartTotal,    // ✅ Send total amount
                         payment_status: "PAID",
-                        order_status: "CROSS-CHECK"
+                        order_status: "PENDING"
                     })
                 })
                     .then(res => res.json())  // ✅ First, parse JSON
@@ -114,7 +114,7 @@ const PayQR: React.FC = () => {
                         customer: user,     // ✅ Send customer data
                         total: cartTotal,    // ✅ Send total amount
                         payment_status: "POD",
-                        order_status: "CROSS-CHECK"
+                        order_status: "PENDING"
                     })
                 })
                     .then(res => res.json())  // ✅ First, parse JSON

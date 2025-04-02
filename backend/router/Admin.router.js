@@ -1,12 +1,14 @@
 import express from "express";
 import {
   AddItem,
+  ClearOrders,
   CreateOrder,
   DeleteItem,
   DeleteReview,
   MenuControl,
   OrderBook,
   OrderStatus,
+  saveSubscription,
   UpdateItem,
 } from "../controller/Admin.controls.js";
 import { GetMenu } from "../controller/Client.controls.js";
@@ -22,5 +24,6 @@ routing.delete("/delete-item/:_id", DeleteItem);
 routing.put("/set_order_status", OrderStatus);
 routing.post("/menu-edit",MenuControl)
 routing.get("/menu",GetMenu)
+routing.delete("/cleanup",ClearOrders)
 
 export default routing;

@@ -19,7 +19,7 @@ export interface OrderProps {
     };
     cart: CartItem[];
     total: number;
-    payment_status?: "PAID" | "POD";
+    payment_status?: "PAYING" | "POD";
     order_status?: string;
     _id: string
 }
@@ -27,9 +27,12 @@ export interface OrderProps {
 const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
     return (
         <div className="p-4 bg-white shadow-md rounded-lg">
-            <h3 className="text-lg font-bold text-gray-800">
-                Order for: {order.customer.username}
-            </h3>
+            <div className="flex justify-between">
+                <h3 className="text-lg font-bold text-gray-800">
+                    Order for: {order.customer.username}
+                </h3>
+                <kbd>{order.order_status}</kbd>
+            </div>
             <p className="text-sm text-gray-600">
                 📍 {order.customer.location} | 📞 {order.customer.contact}
             </p>
@@ -43,7 +46,7 @@ const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
                 ))}
             </div>
             <div className="mt-2 text-right">
-                <p className={`text-sm ${order.payment_status === "PAID" && "text-green-600"} ${order.payment_status === "POD" && "text-red-600"}`}>
+                <p className={`text-sm ${order.payment_status === "PAYING" && "text-green-600"} ${order.payment_status === "POD" && "text-red-600"}`}>
                     <EventAvailableIcon /> {order.payment_status || "Pending"}
                 </p>
                 <p className="font-semibold text-lg">Total: ₹{order.total}</p>

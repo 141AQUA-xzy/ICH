@@ -26,7 +26,7 @@ const PendingApproval = () => {
                         customer: user, // ✅ Send customer data
                         total: cartTotal, // ✅ Send total amount
                         payment_status: "PAID",
-                        order_status: "CROSS-CHECK",
+                        order_status: "PENDING",
                     }),
                 });
 

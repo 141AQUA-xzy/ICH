@@ -10,7 +10,8 @@
     "mongodb": "^6.13.1",
     "mongoose": "^8.11.0",
     "morgan": "^1.10.0",
-    "socket.io": "^4.8.1"
+    "socket.io": "^4.8.1",
+    "web-push": "^3.6.7"
   },
   "scripts": {
     "start": "node server.js",
@@ -18,7 +19,6 @@
   },
   "version": "1.0.0",
   "main": "server.js",
-  "devDependencies": {},
   "keywords": [],
   "author": "",
   "license": "ISC",

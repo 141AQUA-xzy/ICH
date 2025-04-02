@@ -3,6 +3,7 @@ import Menu from "../dB/modals/Menu.modal.js";
 import { Order } from "../dB/modals/Orders.modal.js";
 import { Review } from "../dB/modals/Review.modal.js";
 
+
 export const CreateOrder = async (req, res) => {
   try {
     const { cart, customer, total, payment_status, order_status } = req.body;
@@ -18,14 +19,18 @@ export const CreateOrder = async (req, res) => {
       payment_status,
       order_status,
     });
+
     await newOrder.save();
 
-    res.status(201).json({ message: "Order created successfully!" });
+    console.log("✅ New Order Created:", newOrder);
+
+    res.status(201).json({ message: "Order created & notifications sent!" });
   } catch (error) {
-    console.error("Order Creation Error:", error);
+    console.error("❌ Order Creation Error:", error);
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
 export const OrderBook = async (req, res) => {
   try {
     // Fetch all orders and sort by createdAt in descending order (most recent first)
@@ -133,7 +138,7 @@ export const MenuControl = async (req, res) => {
 
     // ✅ Save or update menu with `AVL` status
     const updatedMenu = await Menu.findOneAndUpdate(
-      {_id:"67e3bb0bdb3bfe9b72131166"},
+      { _id: "67e3bb0bdb3bfe9b72131166" },
       { menu }, // ✅ Updates full menu including `AVL`
       { new: true, upsert: true }
     );
@@ -142,6 +147,31 @@ export const MenuControl = async (req, res) => {
   } catch (error) {
     console.error("❌ Error updating menu:", error);
     res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export const ClearOrders = async (req, res) => {
+  try {
+    await Order.deleteMany({}); // ✅ Deletes all documents in the collection
+    res.json({ message: "Cleaned Up ORDER-BOOK" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Save admin push notification subscription
+export const saveSubscription = async (req, res) => {
+  try {
+    const { endpoint, keys } = req.body;
+
+    // Avoid duplicates
+    const existingSub = await SubscriptionModal.findOne({ endpoint });
+    if (!existingSub) {
+      await SubscriptionModal.create({ endpoint, keys });
+    }
+    res.status(201).json({ message: "Subscription saved!" });
+  } catch (error) {
+    res.status(500).json({ message: "Server Error", error });
   }
 };
 
