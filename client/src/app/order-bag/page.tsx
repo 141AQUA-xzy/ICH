@@ -12,7 +12,7 @@ const MyOrders = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await fetch("http://192.168.43.106:5000/client/myOrders", {
+                const response = await fetch("https://ich-1gjz.onrender.com/client/myOrders", {
                     method: "POST", // ✅ Ensure correct HTTP method
                     headers: {
                         "Content-Type": "application/json",

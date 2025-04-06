@@ -5,10 +5,12 @@ import {
   CreateOrder,
   DeleteItem,
   DeleteReview,
+  GetOrderOfStatus,
+  GetRestaurantStatus,
   MenuControl,
   OrderBook,
   OrderStatus,
-  saveSubscription,
+  RestaurantStatus,
   UpdateItem,
 } from "../controller/Admin.controls.js";
 import { GetMenu } from "../controller/Client.controls.js";
@@ -25,5 +27,10 @@ routing.put("/set_order_status", OrderStatus);
 routing.post("/menu-edit",MenuControl)
 routing.get("/menu",GetMenu)
 routing.delete("/cleanup",ClearOrders)
+routing.post("/stated_order",GetOrderOfStatus)
+routing.put("/status",RestaurantStatus)
+routing.get("/grs",RestaurantStatus)
+routing.get("/grscode",GetRestaurantStatus)
+
 
 export default routing;

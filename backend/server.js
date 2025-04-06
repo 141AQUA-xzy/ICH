@@ -37,11 +37,11 @@ io.on("connection", (socket) => {
   console.log("A user connected ", socket.id);
 
   // Forward client message to admins
-  socket.on("client->server", (data) => {
-    console.log("Message from client:", data);
-    io.emit("server->admin", data); // ✅ Now all admins receive it
-    //Feature of selective admins for receiving and sending data
-  });
+  // socket.on("client->server", (data) => {
+  //   console.log("Message from client:", data);
+  //   io.emit("server->admin", data); // ✅ Now all admins receive it
+  //   //Feature of selective admins for receiving and sending data
+  // });
 
   socket.on("disconnect", () => {
     console.log("User disconnected: ", socket.id);
@@ -54,8 +54,7 @@ app.use("/admin", routing);
 server.listen(PORT, () => {
   connectDB();
   console.log(`✅ Server is running on port ${PORT}`);
-});    
-
+});
 
 // // 1️⃣ Import Required Packages
 // // iport express from "express";

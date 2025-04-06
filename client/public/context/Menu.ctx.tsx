@@ -2,7 +2,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 // API URLs
-const LATEST_MENU = "http://localhost:5000/admin/menu"; // For fetching latest menu
+const LATEST_MENU = "https://ich-1gjz.onrender.com/admin/menu"; // For fetching latest menu
 
 // Context Type
 interface MenuContextType {

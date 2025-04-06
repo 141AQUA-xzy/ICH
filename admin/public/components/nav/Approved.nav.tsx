@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { ICHHero } from '../ICHHero';
 import { Await } from '../Await.lottie';
 import { useLoading } from '../../context/Loading.ctx';
-import { OrderBlock, OrderProps } from '../OrderBlock';
+import { OrderProps, PlacedBlock } from '../OrderBlock';
 import toast, { Toaster } from 'react-hot-toast';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import SendTimeExtensionIcon from '@mui/icons-material/SendTimeExtension';
+import CheckIcon from '@mui/icons-material/Check';
 import { fonts } from '../../assets/fonts/Fonts';
 
-export const Orders = () => {
+export const Approved = () => {
     const [orders, setOrder] = useState<OrderProps[]>([]);
     const { showLoading, hideLoading } = useLoading()
 
@@ -16,11 +16,12 @@ export const Orders = () => {
         showLoading()
         const fetchOrders = async () => {
             try {
-                const response = await fetch("https://ich-1gjz.onrender.com/admin/order-book", {
-                    method: "GET", // ✅ Use POST if sending user details
+                const response = await fetch("https://ich-1gjz.onrender.com/admin/stated_order", {
+                    method: "POST", // ✅ Use POST if sending user details
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    body: JSON.stringify({ order_status: "APPROVED" })
                 });
 
                 if (!response.ok) {
@@ -29,7 +30,7 @@ export const Orders = () => {
                 }
 
                 const data = await response.json();
-                setOrder(data); // ✅ Update state with fetched orders
+                setOrder(data.orders);
                 hideLoading()
             } catch (error: unknown) {
                 if (error instanceof Error) {
@@ -42,23 +43,18 @@ export const Orders = () => {
         fetchOrders();
     }, []); // ✅ Runs once on component mount
 
-
     return (
         <search className={`px-1 bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] w-full`}>
             <ICHHero />
-            <h1 className={`${fonts.dancingScript} text-center w-full h-max p-2 text-2xl bg-[#FCA331] rounded-lg`}>PENDING APPROVAL{" "}<SendTimeExtensionIcon style={{ color: "black" }} className='animate animate-bounce' /></h1>
+            <h1 className={`${fonts.dancingScript} text-center w-full h-max p-2 text-2xl bg-[#FCA331] rounded-lg`}>APPROVED ORDERS{" "}<CheckIcon style={{ color: "black" }} className='animate animate-bounce' /></h1>
             <div className={`${orders.length === 0 && "overflow-hidden"} mt-1 h-[76vh] w-full border p-1 rounded-lg overflow-x-auto text-black pb-20 ${orders.length === 0 && "pb-0"}`}>
-                {orders.length === 0 && <div className="h-dvh w-full bg-inherit text-white flex flex-col justify-center items-center">
+                {orders.length === 0 && <div className="h-dvh w-full bg-inherit text-white flex flex-col items-center">
                     <Await />
                 </div>}
                 {/* {JSON.stringify(orders)} */}
                 <div className="bg-transparent h-auto w-full flex flex-col gap-2">
-                    {orders
-                        .slice() // ✅ Creates a shallow copy to avoid mutating the original array
-                        .reverse() // ✅ Reverses the order
-                        .filter((item) => item.order_status === "PENDING") // ✅ Filters after reversing
-                        .map((item, index) => (
-                            <OrderBlock order={item} key={index} />
+                    {orders.map((item, index) => (
+                            <PlacedBlock order={item} key={index} />
                         ))}
 
                 </div>

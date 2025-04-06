@@ -9,9 +9,6 @@ body {
 .carousel {
   animation: carouzel infinite steps(2) 5s;
 }
-.carousel:hover {
-  animation-play-state: paused;
-}
 .carouselX {
   animation: carousel infinite linear 25s;
 }

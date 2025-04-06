@@ -12,8 +12,8 @@ export const Await = () => {
             />
             <div className="flex flex-col justify-center items-center">
                 <kbd className={`text-2xl font-extrabold text-[#FCA331] bg-black rounded-lg p-1`}>COMING SOON</kbd>
-                <kbd className="text-sm text-balance text-black">WITH</kbd>
-                <kbd className="text-lg font-extralight text-black">NEW ORDERS</kbd>
+                <kbd className="text-sm text-balance text-amber-300 animate-pulse">WITH</kbd>
+                <kbd className="text-lg font-extralight text-amber-300 animate-pulse">NEW ORDERS</kbd>
             </div>
         </>
     )

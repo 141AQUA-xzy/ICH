@@ -3,7 +3,6 @@ import Menu from "../dB/modals/Menu.modal.js";
 import { Order } from "../dB/modals/Orders.modal.js";
 import { Review } from "../dB/modals/Review.modal.js";
 
-
 export const CreateOrder = async (req, res) => {
   try {
     const { cart, customer, total, payment_status, order_status } = req.body;
@@ -128,6 +127,19 @@ export const OrderStatus = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
+
+export const GetOrderOfStatus = async (req, res) => {
+  try {
+    const { order_status } = req.body;
+    const orders = await Order.find({ order_status });
+    res.json({
+      orders: orders,
+    });
+  } catch (error) {
+    res.json({ message: `${error.message}` });
+  }
+};
+
 export const MenuControl = async (req, res) => {
   try {
     const { menu } = req.body;
@@ -159,19 +171,33 @@ export const ClearOrders = async (req, res) => {
   }
 };
 
-// Save admin push notification subscription
-export const saveSubscription = async (req, res) => {
+export const RestaurantStatus = async (req, res) => {
   try {
-    const { endpoint, keys } = req.body;
+    // 🔹 Find the first menu document (since status is a global field)
+    const menu = await Menu.findOne();
+    if (!menu) return res.status(404).json({ message: "Menu not found" });
 
-    // Avoid duplicates
-    const existingSub = await SubscriptionModal.findOne({ endpoint });
-    if (!existingSub) {
-      await SubscriptionModal.create({ endpoint, keys });
-    }
-    res.status(201).json({ message: "Subscription saved!" });
+    // 🔹 Toggle the status
+    menu.status = !menu.status;
+    await menu.save(); // ✅ Save the updated status
+
+    res.json({ message: "Status updated", status: menu.status }); // ✅ Send back updated status
   } catch (error) {
-    res.status(500).json({ message: "Server Error", error });
+    console.error("❌ Error updating status:", error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// ✅ Add another endpoint to GET current status
+export const GetRestaurantStatus = async (req, res) => {
+  try {
+    const menu = await Menu.find();
+    if (!menu) return res.status(404).json({ message: "Menu not found" });
+
+    res.json({ status: menu[0]?.status }); // ✅ Send back status
+  } catch (error) {
+    console.error("❌ Error fetching status:", error);
+    res.status(500).json({ message: error.message });
   }
 };
 

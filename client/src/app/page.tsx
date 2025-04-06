@@ -1,6 +1,5 @@
 "use client"
-import { useEffect } from "react";
-import { io } from "socket.io-client";
+import { useEffect, useRef, useState } from "react";
 import { HomeNav } from "../../public/components/nav/home/Home.nav";
 import { MenuPage } from "../../public/components/nav/menu/Menu.nav";
 import OrderBag from "../../public/components/nav/orderbag/OrderBag.nav";
@@ -11,6 +10,8 @@ import { useUser } from "../../public/context/Session.ctx";
 import { useRouter } from "next/navigation";
 import { useLoading } from "../../public/context/Loading.ctx";
 import { Loading } from "../../public/components/loader/Loading";
+import NearbyOffIcon from '@mui/icons-material/NearbyOff';
+
 
 export default function Home() {
 
@@ -19,9 +20,27 @@ export default function Home() {
   const router = useRouter()
   // const [session, setSession] = useState(localStorage.getItem("session"))
 
+  const [open, setStatus] = useState()
+
+  const resStatus = async () => {
+    try {
+      const res = await fetch("https://ich-1gjz.onrender.com/admin/grscode");
+      const data = await res.json();
+      setStatus(data.status); // ✅ Set state from response
+
+      setTimeout(() => {
+        console.log("Current status:", data.status);
+      }, 3000);
+    } catch (error) {
+      console.error("Failed to fetch status:", error);
+    }
+  };
+  useEffect(() => {
+    resStatus();
+  }, []);
+
   useEffect(() => {
     if (user === undefined) return; // ⛔ Wait for user confirmation (strict check)
-
     showLoading()
 
     if (user) {
@@ -35,26 +54,11 @@ export default function Home() {
 
   const { view } = useView()
 
-  const socket = io("http://localhost:5000");//Connecting Server-Client by putting backend server URI
-
-  useEffect(() => {
-    socket.on("client", (data) => {
-      console.log(data)
-    })
-    socket.on("message", (data) => {
-      console.log(data.message)
-    })
-    socket.emit("message", { message: "Client to Server" })
-
-    // Cleanup function to remove event listeners on component unmount
-    // return () => {
-    //   socket.off("client");
-    //   socket.off("message");
-    // };
-  }, [])
-
   return (
     <section className="bg-fixed bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] p-0.5">
+      {!open ? <div className="w-full bg-red-600 fixed z-[100000020200202020] rounded-2xl p-2 bottom-14 animate-pulse flex flex-col"><code><NearbyOffIcon />{" "}CURRENTLY NOT RECEIVING ORDERS</code><address className="text-sm"></address></div> : ""}
+      <h1 className="text-3xl font-bold">
+      </h1>
       {isLoading && <Loading />}
       {view === "Home" ? (<HomeNav />) : view === "Menu" ? (
         <MenuPage />

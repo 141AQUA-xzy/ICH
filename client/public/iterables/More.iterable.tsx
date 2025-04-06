@@ -27,7 +27,7 @@ export const MoreIterator = (
       title: "My Profile",
       icon: PersonPinIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
@@ -45,13 +45,13 @@ export const MoreIterator = (
       title: "Our Services",
       icon: ShoppingBasketIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     }, {
       title: "ICH Gallery",
       icon: CollectionsIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
 
     },
@@ -59,49 +59,49 @@ export const MoreIterator = (
       title: "See Reviews",
       icon: RateReviewIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
       title: "Sponsorship",
       icon: SensorOccupiedIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
       title: "View Offers",
       icon: LocalOfferIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
       title: "How to ?",
       icon: QuestionMarkIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
       title: "Terms & Usage",
       icon: PolicyIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
       title: "Share",
       icon: ShareIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
       title: "Need Support",
       icon: SupportAgentIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Profile Clicked");
+        alert("Coming Soon...");
       },
     },
     {
