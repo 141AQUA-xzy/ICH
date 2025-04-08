@@ -20,9 +20,7 @@ export const CreateOrder = async (req, res) => {
     });
 
     await newOrder.save();
-
-    console.log("✅ New Order Created:", newOrder);
-
+    
     res.status(201).json({ message: "Order created" });
   } catch (error) {
     console.error("❌ Order Creation Error:", error);
@@ -226,3 +224,100 @@ export const GetRestaurantStatus = async (req, res) => {
 //     res.status(500).json({ message: "Internal server error" });
 //   }
 // };
+
+
+
+// Your 66 menu items as a flat object
+const updatedMenuItems = {
+  "Student Thali": { "price-hf": 79, "price-fl": 99, AVL: true },
+  "Standard Thali": { "price-hf": 109, "price-fl": 129, AVL: true },
+  "Executive Thali": { "price-hf": 119, "price-fl": 139, AVL: true },
+  "Premium Thali": { "price-hf": 139, "price-fl": 159, AVL: true },
+  "Matar paneer": { "price-hf": 69, "price-fl": 139, AVL: true },
+  "Sahi paneer": { "price-hf": 99, "price-fl": 179, AVL: true },
+  "Butter paneer": { "price-hf": 99, "price-fl": 179, AVL: true },
+  "Paneer punjabi": { "price-hf": 89, "price-fl": 169, AVL: true },
+  "Paneer bhurji": { "price-hf": 119, "price-fl": 199, AVL: true },
+  "Paneer masala": { "price-hf": 89, "price-fl": 169, AVL: true },
+  "Paneer butter masala": { "price-hf": 109, "price-fl": 189, AVL: true },
+  "Paneer lababdar": { "price-hf": 109, "price-fl": 189, AVL: true },
+  "Paneer pasanda": { "price-hf": 109, "price-fl": 189, AVL: true },
+  "Paneer do payaza": { "price-hf": 99, "price-fl": 179, AVL: true },
+  "Kadai paneer": { "price-hf": 109, "price-fl": 189, AVL: true },
+  "Paneer chatpata": { "price-hf": 119, "price-fl": 199, AVL: true },
+  "Paneer malai": { "price-hf": 109, "price-fl": 189, AVL: true },
+  "Palak paneer": { "price-hf": 89, "price-fl": 169, AVL: true },
+  "Methi matar malai": { "price-hf": 109, "price-fl": 189, AVL: true },
+  "Kaju butter masala": { "price-hf": 119, "price-fl": 199, AVL: true },
+  "Aloo jeera": { "price-hf": 49, "price-fl": 89, AVL: true },
+  "Gobhi masala": { "price-hf": 69, "price-fl": 119, AVL: true },
+  "Sev tamatar": { "price-hf": 49, "price-fl": 89, AVL: true },
+  "Bhindi masala": { "price-hf": 59, "price-fl": 109, AVL: true },
+  "Mixed veg": { "price-hf": 59, "price-fl": 109, AVL: true },
+  "Paneer handi (Chef Special)": { "price-hf": 129, "price-fl": 229, AVL: true },
+  "Tawa roti": { "price-hf": null, "price-fl": 7, AVL: true },
+  "Tawa butter roti": { "price-hf": null, "price-fl": 10, AVL: true },
+  "Aloo paratha": { "price-hf": null, "price-fl": 49, AVL: true },
+  "Gobhi paratha": { "price-hf": null, "price-fl": 59, AVL: true },
+  "Paneer paratha": { "price-hf": null, "price-fl": 69, AVL: true },
+  "Boondi raita": { "price-hf": 29, "price-fl": 39, AVL: true },
+  "Plain raita": { "price-hf": 19, "price-fl": 29, AVL: true },
+  "Simple salad": { "price-hf": null, "price-fl": 39, AVL: true },
+  "Green salad": { "price-hf": null, "price-fl": 49, AVL: true },
+  "Mixed salad": { "price-hf": null, "price-fl": 59, AVL: true },
+  "Veg (Steam/Fried) Momos": { "price-hf": 69, "price-fl": 99, AVL: true },
+  "Veg Crispy Momos": { "price-hf": null, "price-fl": 129, AVL: true },
+  "Paneer (Steam/Fried) Momos": { "price-hf": 79, "price-fl": 99, AVL: true },
+  "Paneer Crispy Momos": { "price-hf": null, "price-fl": 139, AVL: true },
+  "Veg Fried Rice": { "price-hf": 69, "price-fl": 139, AVL: true },
+  "Veg Szechwan Fried Rice": { "price-hf": 79, "price-fl": 159, AVL: true },
+  "Manchurian Fried Rice": { "price-hf": 99, "price-fl": 179, AVL: true },
+  "Paneer Fried Rice": { "price-hf": 99, "price-fl": 179, AVL: true },
+  "Paneer Szechwan Fried Rice": { "price-hf": 99, "price-fl": 179, AVL: true },
+  "Veg Noodles": { "price-hf": 59, "price-fl": 109, AVL: true },
+  "Hakka Noodles": { "price-hf": 79, "price-fl": 159, AVL: true },
+  "Veg Szechwan Noodles": { "price-hf": 79, "price-fl": 159, AVL: true },
+  "Chilli Garlic Noodles": { "price-hf": 89, "price-fl": 179, AVL: true },
+  "Manchurian Noodles": { "price-hf": 89, "price-fl": 179, AVL: true },
+  "Paneer Noodles": { "price-hf": 89, "price-fl": 179, AVL: true },
+  "Paneer Szechwan Noodles": { "price-hf": 89, "price-fl": 179, AVL: true },
+  "Veg Manchurian": { "price-hf": 69, "price-fl": 139, AVL: true },
+  "Chilli Paneer": { "price-hf": 129, "price-fl": 259, AVL: true },
+  "All Mix": { "price-hf": 99, "price-fl": 199, AVL: true },
+  "Red Sauce Pasta": { "price-hf": null, "price-fl": 129, AVL: true },
+  "White Sauce Pasta": { "price-hf": null, "price-fl": 139, AVL: true },
+  "Mixed Sauce Pasta": { "price-hf": null, "price-fl": 139, AVL: true },
+  "Dal Fry": { "price-hf": 49, "price-fl": 89, AVL: true },
+  "Dal Tadka": { "price-hf": 69, "price-fl": 109, AVL: true },
+  "Plain Rice": { "price-hf": 39, "price-fl": 69, AVL: true },
+  "Jeera Rice": { "price-hf": 49, "price-fl": 89, AVL: true },
+  "Matar Rice": { "price-hf": 49, "price-fl": 89, AVL: true },
+  "Masala Khichdi": { "price-hf": 59, "price-fl": 99, AVL: true },
+  "Sadi Khichdi": { "price-hf": 49, "price-fl": 89, AVL: true }
+};
+
+export const UpdateMenu = async (req, res) => {
+  try {
+    const menuId = "67e3bb0bdb3bfe9b72131166";
+
+    const menuMap = new Map(Object.entries(updatedMenuItems));
+
+    const updated = await Menu.findByIdAndUpdate(
+      menuId,
+      { menu: menuMap },
+      { new: true }
+    );
+
+    if (!updated) {
+      return res.status(404).json({ message: "Menu not found" });
+    }
+
+    return res.status(200).json({
+      message: "Menu updated successfully",
+      updatedMenu: updated.menu,
+    });
+  } catch (error) {
+    console.error("Error updating menu:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};

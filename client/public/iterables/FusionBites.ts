@@ -9,7 +9,7 @@ interface FusionBitesProps {
 
 export const momoMenu: FusionBitesProps[] = [
   {
-    title: "Veg Steamed/Fried Momos",
+    title: "Veg (Steam/Fried) Momos",
     price_hf: 69,
     price_fl: 99,
     hfClicked: () => alert("HF clicked for Veg Momos"),
@@ -25,7 +25,7 @@ export const momoMenu: FusionBitesProps[] = [
     img: "/assets/FusionBites/veg-crispy-momos.png",
   },
   {
-    title: "Paneer Steamed/Fried Momos",
+    title: "Paneer (Steam/Fried) Momos",
     price_hf: 79,
     price_fl: 109,
     hfClicked: () => alert("HF clicked for Paneer Momos"),
@@ -52,7 +52,7 @@ export const chineseRiceMenu: FusionBitesProps[] = [
     img: "/assets/FusionBites/veg-fried-rice.png",
   },
   {
-    title: "Veg Schezwan Fried Rice",
+    title: "Veg Szechwan Fried Rice",
     price_hf: 89,
     price_fl: 159,
     hfClicked: () => alert("HF clicked for Veg Schezwan Fried Rice"),
@@ -76,7 +76,7 @@ export const chineseRiceMenu: FusionBitesProps[] = [
     img: "/assets/FusionBites/paneer-fried-rice.png",
   },
   {
-    title: "Paneer Schezwan Fried Rice",
+    title: "Paneer Szechwan Fried Rice",
     price_hf: 99,
     price_fl: 199,
     hfClicked: () => alert("HF clicked for Paneer Schezwan Fried Rice"),
@@ -103,7 +103,7 @@ export const wokChineseMenu: FusionBitesProps[] = [
     img: "/assets/FusionBites/hakka-noodles.png",
   },
   {
-    title: "Veg Schezwan Noodles",
+    title: "Veg Szechwan Noodles",
     price_hf: 79,
     price_fl: 159,
     hfClicked: () => alert("HF clicked for Veg Schezwan Noodles"),
@@ -135,7 +135,7 @@ export const wokChineseMenu: FusionBitesProps[] = [
     img: "/assets/FusionBites/paneer-noodles.png",
   },
   {
-    title: "Paneer Schezwan Noodles",
+    title: "Paneer Szechwan Noodles",
     price_hf: 89,
     price_fl: 179,
     hfClicked: () => alert("HF clicked for Paneer Schezwan Noodles"),
@@ -180,14 +180,7 @@ export const chineseStarterMenu: FusionBitesProps[] = [
     ffClicked: () => alert("FF clicked for All Mix"),
     img: "/assets/FusionBites/all-mix.png",
   },
-  {
-    title: "Chilli Potato",
-    price_hf: null,
-    price_fl: 99,
-    hfClicked: undefined,
-    ffClicked: () => alert("FF clicked for Chilli Potato"),
-    img: "/assets/FusionBites/chilli-potato.png",
-  },
+ 
   {
     title: "Veg Manchurian",
     price_hf: null,

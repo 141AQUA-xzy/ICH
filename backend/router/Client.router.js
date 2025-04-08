@@ -2,6 +2,7 @@ import express from "express";
 import {
   CreateReview,
   CreateUser,
+  DeletePending,
   GetMenu,
   GetMyOrders,
   GetReviews,
@@ -24,5 +25,7 @@ router.get("/reviews",GetReviews)
 router.post("/myOrders",GetMyOrders)
 
 router.delete("/:id/logout",LogoutUser)
+
+router.delete("/deleteOrder",DeletePending)
 
 export default router;

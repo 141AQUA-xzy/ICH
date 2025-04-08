@@ -7,7 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import CheckIcon from '@mui/icons-material/Check';
 import { fonts } from '../../assets/fonts/Fonts';
-
+import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
 export const Approved = () => {
     const [orders, setOrder] = useState<OrderProps[]>([]);
     const { showLoading, hideLoading } = useLoading()
@@ -46,7 +46,7 @@ export const Approved = () => {
     return (
         <search className={`px-1 bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] w-full`}>
             <ICHHero />
-            <h1 className={`${fonts.dancingScript} text-center w-full h-max p-2 text-2xl bg-[#FCA331] rounded-lg`}>APPROVED ORDERS{" "}<CheckIcon style={{ color: "black" }} className='animate animate-bounce' /></h1>
+            <h1 className={`${fonts.dancingScript} text-center w-full h-max p-2 text-2xl bg-[#FCA331] rounded-lg`}>APPROVED ORDERS{" "}<DeliveryDiningIcon style={{ color: "black" }} className='animate animate-bounce' /></h1>
             <div className={`${orders.length === 0 && "overflow-hidden"} mt-1 h-[76vh] w-full border p-1 rounded-lg overflow-x-auto text-black pb-20 ${orders.length === 0 && "pb-0"}`}>
                 {orders.length === 0 && <div className="h-dvh w-full bg-inherit text-white flex flex-col items-center">
                     <Await />

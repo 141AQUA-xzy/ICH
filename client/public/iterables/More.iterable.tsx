@@ -20,7 +20,7 @@ export const MoreIterator = (
   showLoading: () => void,
   hideLoading: () => void,
   clearCart: () => void,
-  setView: (view:string) => void,
+  setView: (view: string) => void,
   _id?: string,
 ) => [
     {
@@ -35,10 +35,8 @@ export const MoreIterator = (
       icon: ShoppingBagIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
         showLoading()
-        setTimeout(() => {
-          router.push("/order-bag")
-          hideLoading()
-        }, 1000);
+        router.push("/order-bag")
+        hideLoading()
       },
     },
     {
@@ -108,14 +106,15 @@ export const MoreIterator = (
       title: "Logout",
       icon: LogoutIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: async () => {
+        showLoading()
         localStorage.removeItem("ICHuser");
         localStorage.removeItem("cart");
-        toast.success("Logged Out")
         clearCart();
-        await logout(_id); // ✅ Awaiting if `logout` is async
+        logout(); // ✅ Awaiting if `logout` is async
         router.replace("/user"); // ✅ Redirect to `/user`
         setView("null")
         window.location.reload()
+        hideLoading()
       }
     },
   ];

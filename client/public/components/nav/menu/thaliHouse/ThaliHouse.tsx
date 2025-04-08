@@ -27,19 +27,19 @@ interface ThaliHouseProps {
     title: string;
     items: ThaliItemProps[]; // Array of Thali items
     banner: string; // Main banner image
-    prices: { standard: number; ultimate: number }; // Pricing object
+    prices: {  standard: number | null | undefined; ultimate: number }; // Pricing object
     onStandardClick: () => void; // Function for Standard Thali button
     onUltimateClick: () => void; // Function for Ultimate Thali button
 }
 
 const ThaliHouse: React.FC<ThaliHouseProps> = ({ title, items, banner, prices, onStandardClick, onUltimateClick }) => {
     const { menu } = useMenu();
-    const standardPrice = menu[title.toUpperCase()]?.["price-hf"] ?? 0;
-    const ultimatePrice = menu[title.toUpperCase()]?.["price-fl"] ?? 0;
+    const standardPrice = menu[title]?.["price-hf"] ?? 0;
+    const ultimatePrice = menu[title]?.["price-fl"] ?? 0;
     return (
         <section className="w-dvw h-[50vh] flex relative">
             <h2 className={`absolute z-10 w-full bg-[#FCA331] text-2xl p-2 rounded-t-2xl ${fonts.zillaSlab}`}>
-                {title}
+                {title.toUpperCase()}
             </h2>
             <div className="w-1/4 pt-10 bg-inherit rounded-2xl flex flex-col overflow-y-scroll gap-5">
                 {items.map((item, index) => (

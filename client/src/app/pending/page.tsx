@@ -15,6 +15,7 @@ const PendingApproval = () => {
 
     useEffect(() => {
         const ExecuteOrder = async () => {
+            showLoading()
             try {
                 const response = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
                     method: "POST",
@@ -34,24 +35,26 @@ const PendingApproval = () => {
                     throw new Error("Failed to create order");
                 }
 
-                await response.json(); // ✅ Parse JSON response if needed
-                hideLoading();
+                const data = await response.json(); // ✅ Parse JSON response if needed
+                toast.success(`${data.message}`)
+
             } catch (error: unknown) {
                 if (error instanceof Error) {
                     toast.error(`Order failed: ${error.message}`);
                 } else {
                     toast.error("Order failed: An unknown error occurred");
                 }
+            } finally {
+                hideLoading();
             }
         };
 
         ExecuteOrder(); // ✅ Call the function inside useEffect
     }, []); // ✅ Runs only on mount
 
-    return isLoading ? (
-        <Loading />
-    ) : (
+    return (
         <div className="text-white flex flex-col justify-center items-center h-dvh w-full gap-2">
+            {isLoading && <Loading />}
             <kbd>Pending Approval</kbd>
             <Link
                 onClick={showLoading} // ✅ Fix: Remove arrow function

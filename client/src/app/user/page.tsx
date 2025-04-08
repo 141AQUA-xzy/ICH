@@ -7,12 +7,10 @@ import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
 import { Loading } from "../../../public/components/loader/Loading";
 import { useLoading } from "../../../public/context/Loading.ctx";
-import { io } from "socket.io-client";
 import { useView } from "../../../public/context/View.ctx";
 
 const Page = () => {
 
-    const socket = io("http://localhost:5000");
 
     const [ip, setIp] = useState<string | null>(null);
 
@@ -83,8 +81,7 @@ const Page = () => {
         if (isValidIndianNumber(contact)) {
             login({ username:name, contact, location ,ip,_id:null});
             setView("Home")
-            socket.emit("client->server", { name, contact, location, ip})
-            Toast(`You are now a member DB`, "🎆");
+            Toast(`You are now a member`, "🎆");
             router.push("/");
         } else {
             return Toast(`Incorrect Credentials`, "📨");

@@ -16,11 +16,12 @@ export const Orders = () => {
         showLoading()
         const fetchOrders = async () => {
             try {
-                const response = await fetch("https://ich-1gjz.onrender.com/admin/order-book", {
-                    method: "GET", // ✅ Use POST if sending user details
+                const response = await fetch("https://ich-1gjz.onrender.com/admin/stated_order", {
+                    method: "POST", // ✅ Use POST if sending user details
                     headers: {
                         "Content-Type": "application/json",
                     },
+                    body: JSON.stringify({ order_status: "PENDING" })
                 });
 
                 if (!response.ok) {
@@ -29,7 +30,7 @@ export const Orders = () => {
                 }
 
                 const data = await response.json();
-                setOrder(data); // ✅ Update state with fetched orders
+                setOrder(data.orders); // ✅ Update state with fetched orders
                 hideLoading()
             } catch (error: unknown) {
                 if (error instanceof Error) {
@@ -47,20 +48,26 @@ export const Orders = () => {
         <search className={`px-1 bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] w-full`}>
             <ICHHero />
             <h1 className={`${fonts.dancingScript} text-center w-full h-max p-2 text-2xl bg-[#FCA331] rounded-lg`}>PENDING APPROVAL{" "}<SendTimeExtensionIcon style={{ color: "black" }} className='animate animate-bounce' /></h1>
-            <div className={`${orders.length === 0 && "overflow-hidden"} mt-1 h-[76vh] w-full border p-1 rounded-lg overflow-x-auto text-black pb-20 ${orders.length === 0 && "pb-0"}`}>
-                {orders.length === 0 && <div className="h-dvh w-full bg-inherit text-white flex flex-col justify-center items-center">
+            <div className={`${Object.keys(orders).length === 0 && "overflow-hidden"} mt-1 h-[76vh] w-full border p-1 rounded-lg overflow-x-auto text-black pb-20 ${orders.length === 0 && "pb-0"}`}>
+                {/* {Object.keys(orders).length === 0 && <div className="h-dvh w-full bg-inherit text-white flex flex-col justify-center items-center">
                     <Await />
-                </div>}
+                </div>} */}
                 {/* {JSON.stringify(orders)} */}
                 <div className="bg-transparent h-auto w-full flex flex-col gap-2">
-                    {orders
+                    {/* {orders
                         .slice() // ✅ Creates a shallow copy to avoid mutating the original array
                         .reverse() // ✅ Reverses the order
                         .filter((item) => item.order_status === "PENDING") // ✅ Filters after reversing
                         .map((item, index) => (
                             <OrderBlock order={item} key={index} />
+                        ))} */}
+                    {Object.values(orders)
+                        .slice() // ✅ Creates a shallow copy
+                        .reverse() // ✅ Reverses order
+                        .filter((item) => item.order_status === "PENDING") // ✅ Filters
+                        .map((item, index) => (
+                            <OrderBlock order={item} key={index} />
                         ))}
-
                 </div>
             </div>
             <search className="" onClick={() => {

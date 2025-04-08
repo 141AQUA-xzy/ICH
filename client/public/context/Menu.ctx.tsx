@@ -1,5 +1,6 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
+import { useLoading } from "./Loading.ctx";
 
 // API URLs
 const LATEST_MENU = "https://ich-1gjz.onrender.com/admin/menu"; // For fetching latest menu
@@ -14,11 +15,13 @@ const MenuContext = createContext<MenuContextType | undefined>(undefined);
 
 // Provider Component
 export const MenuProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [menu, setMenu] = useState<Record<string, { "price-hf"?: number | null; "price-fl": number; "AVL": boolean }>>({});
 
+    const [menu, setMenu] = useState<Record<string, { "price-hf"?: number | null; "price-fl": number; "AVL": boolean }>>({});
+    const { showLoading, hideLoading } = useLoading()
     // Fetch Menu on Mount
     useEffect(() => {
         const fetchMenu = async () => {
+            showLoading()
             try {
                 const response = await fetch(LATEST_MENU);
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
@@ -30,11 +33,19 @@ export const MenuProvider: React.FC<{ children: React.ReactNode }> = ({ children
             } catch (error) {
                 console.error("❌ Error fetching menu:", error);
             } finally {
+                // console.log(menu)
+                hideLoading()
             }
         };
 
         fetchMenu();
     }, []);
+
+    useEffect(() => {
+        if (Object.keys(menu).length > 0) {
+            console.log("✅ Menu updated:", menu);
+        }
+    }, [menu]);
 
     // Update Price
 

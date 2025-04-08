@@ -12,6 +12,7 @@ import {
   OrderStatus,
   RestaurantStatus,
   UpdateItem,
+  UpdateMenu,
 } from "../controller/Admin.controls.js";
 import { GetMenu } from "../controller/Client.controls.js";
 
@@ -31,6 +32,7 @@ routing.post("/stated_order",GetOrderOfStatus)
 routing.put("/status",RestaurantStatus)
 routing.get("/grs",RestaurantStatus)
 routing.get("/grscode",GetRestaurantStatus)
+routing.post("/updateMenu",UpdateMenu)
 
 
 export default routing;

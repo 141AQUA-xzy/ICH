@@ -2,12 +2,15 @@
 import React, { useEffect, useState } from "react";
 import { fonts } from "../../assets/fonts/Fonts";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import { useLoading } from "../../context/Loading.ctx";
 const LATEST_MENU = "https://ich-1gjz.onrender.com/admin/menu";
 const API_URL = "https://ich-1gjz.onrender.com/admin/menu-edit";
 
 const MenuEditor: React.FC = () => {
+
     const [menu, setMenu] = useState<Record<string, { "price-hf"?: number | null; "price-fl": number, "AVL": boolean }>>({});
     const [loading, setLoading] = useState(true);
+    const { showLoading, hideLoading } = useLoading()
 
     useEffect(() => {
         const fetchMenu = async () => {
@@ -53,6 +56,7 @@ const MenuEditor: React.FC = () => {
     };
 
     const saveMenu = async () => {
+        showLoading()
         try {
             const response = await fetch(API_URL, {
                 method: "POST",
@@ -66,6 +70,8 @@ const MenuEditor: React.FC = () => {
         } catch (error) {
             console.error("❌ Error saving menu:", error);
             alert("Failed to save menu.");
+        } finally {
+            hideLoading()
         }
     };
 
@@ -73,7 +79,7 @@ const MenuEditor: React.FC = () => {
         <search className="h-dvh w-full bg-[#FCA331]">
             <div className="p-4 bg-[#FCA331] flex flex-col w-dvw pb-20">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-lg md:text-2xl font-semibold text-center sticky top-5">
-                    <h1 className={`${fonts.dancingScript} text-2xl w-full bg-black text-[#FCA331] rounded-2xl p-1`}><AppRegistrationIcon className="animate-bounce" />{" "}MENU CARD</h1>
+                    <h1 className={`${fonts.dancingScript} text-2xl w-full bg-black text-[#FCA331] rounded-2xl p-1`}><AppRegistrationIcon className="animate-bounce" />{" "}MENU CARD-<code className="text-sm">{Object.keys(menu).length}</code></h1>
                 </div>
 
                 {loading ? (
@@ -81,7 +87,10 @@ const MenuEditor: React.FC = () => {
                 ) : (
                     Object.entries(menu).map(([dish, details]) => (
                         <div key={dish} className="grid grid-cols-1 md:grid-cols-4 items-center gap-2 border-b py-2">
-                            <h3 className={`${fonts.cinzel} text-[#000000] w-max bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] text-lg md:text-xl font-semibold p-1 rounded-lg`}>{dish}</h3>
+                            <div className="flex justify-between">
+                                <div></div>
+                                <h3 className={`${fonts.cinzel} text-[#000000] w-max bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] text-lg md:text-xl font-semibold p-1 rounded-lg`}>{dish}</h3>
+                            </div>
                             <div className="flex items-center gap-1">
                                 <code className="bg-black text-[#FCA331] w-max rounded-lg text-sm p-2">HF/LT</code>
                                 <input
@@ -103,7 +112,7 @@ const MenuEditor: React.FC = () => {
                                 />
                             </div>
 
-                            <button onClick={() => toggleAvailability(dish)} className={`p-2 rounded-md text-white bg-black ${fonts.changa}`}>
+                            <button onClick={() => toggleAvailability(dish)} className={`p-2 rounded-md bg-black ${fonts.changa} ${details.AVL ? "text-green-300" : "text-red-500"}`}>
                                 {details.AVL ? "AVAILABLE ✓" : "UNAVAILABLE ✕"}
                             </button>
                         </div>

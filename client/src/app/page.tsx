@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { HomeNav } from "../../public/components/nav/home/Home.nav";
 import { MenuPage } from "../../public/components/nav/menu/Menu.nav";
 import OrderBag from "../../public/components/nav/orderbag/OrderBag.nav";
@@ -23,16 +23,15 @@ export default function Home() {
   const [open, setStatus] = useState()
 
   const resStatus = async () => {
+    showLoading()
     try {
       const res = await fetch("https://ich-1gjz.onrender.com/admin/grscode");
       const data = await res.json();
       setStatus(data.status); // ✅ Set state from response
-
-      setTimeout(() => {
-        console.log("Current status:", data.status);
-      }, 3000);
     } catch (error) {
       console.error("Failed to fetch status:", error);
+    }finally{
+      hideLoading()
     }
   };
   useEffect(() => {

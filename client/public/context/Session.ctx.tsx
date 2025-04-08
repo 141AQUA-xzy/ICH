@@ -16,7 +16,7 @@ interface User {
 interface UserContextType {
   user: User | null;
   login: (userData: User) => void;
-  logout: (_id?: string) => Promise<void>;
+  logout: () => Promise<void>;
   updateUser: (updatedFields: Partial<User>) => void;
 }
 
@@ -33,6 +33,17 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      const timer = setTimeout(() => {
+        setUser(user)
+        console.log("Updated user:", user);
+      }, 100);
+
+      return () => clearTimeout(timer); // Clean up
+    }
+  }, [user]);
 
   const login = async (userData: User) => {
     showLoading()
@@ -66,7 +77,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  const logout = async (_id?: string) => {
+  const logout = async () => {
 
     // Toast function for notifications
     const Toast = (message: string, icon: string) => {
@@ -82,27 +93,30 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       });
     };
 
-    if (!_id) {
-      toast.error("No user ID provided for logout");
-      return;
-    }
-
     try {
       // ✅ Ensure fetch request uses `_id` directly
-      // ✅ Remove user from local storage *after* successful API call
-      setUser(null); // ✅ Update state after logout
 
-      const response = await fetch(`http://localhost:5000/client/${_id}/logout`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      let session: User | null = null;
 
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+      const userString = localStorage.getItem("ICHuser");
+
+      if (userString) {
+        session = JSON.parse(userString) as User;
+        const response = await fetch(`http://192.168.43.106:5000/client/${session._id}/logout`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        await localStorage.removeItem("ICHuser")
+        await localStorage.removeItem("cart")
+        setUser(null); // ✅ Update state after logout
+        Toast("Logged Out", "🤖")
       }
-      Toast("Logged Out","🤖")
+
 
       // ✅ Show success toast
     } catch (error: any) {

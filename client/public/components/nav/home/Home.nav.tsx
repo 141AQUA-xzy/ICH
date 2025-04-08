@@ -13,10 +13,11 @@ import { useUser } from '../../../context/Session.ctx';
 import { useLoading } from '../../../context/Loading.ctx';
 import { DotLottieReact, DotLottieWorkerReact } from '@lottiefiles/dotlottie-react';
 import CallIcon from '@mui/icons-material/Call';
+import { Loading } from '../../loader/Loading';
 
 export const HomeNav = () => {
 
-    const { showLoading, hideLoading, isLoading } = useLoading()
+    const { isLoading } = useLoading()
     const { menu, setView, setMenu, view } = useView()
     const { user } = useUser()
     // Define an array of carousel items
@@ -93,6 +94,7 @@ export const HomeNav = () => {
 
     return (
         <div className="h-auto w-full p-1 pb-[70vh]">
+            {isLoading && <Loading />}
             <ICHHero />
             <div className="h-dvh w-full rounded-lg p-1 relative">
                 <div className="h-1/5 w-full rounded-xl relative top-0 overflow-x-scroll shadow shadow-amber-500">

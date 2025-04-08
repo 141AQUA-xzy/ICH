@@ -69,7 +69,7 @@ export const mainCourseRiceData: MainCourseProps[] = [
   },
 ];
 
-export const mainCourseSabjiData: MainCourseProps[] = [
+export const SabjiData: MainCourseProps[] = [
   {
     title: "Matar Paneer",
     price_hf: 69,

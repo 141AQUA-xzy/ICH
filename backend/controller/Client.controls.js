@@ -2,6 +2,7 @@ import { User } from "../dB/modals/User.modal.js";
 import { Review } from "../dB/modals/Review.modal.js";
 import { Order } from "../dB/modals/Orders.modal.js";
 import Menu from "../dB/modals/Menu.modal.js";
+import { response } from "express";
 
 export const CreateUser = async (req, res) => {
   try {
@@ -79,10 +80,24 @@ export const GetMenu = async (req, res) => {
 export const GetReviews = async (req, res) => {
   return res.json(await Review.find({}));
 };
+
 export const GetMyOrders = async (req, res) => {
-  const { customer } = req.body;
-  return res.json(await Order.find({ customer }));
+  try {
+    const { _id } = req.body;
+
+    if (!_id) {
+      return res.status(400).json({ message: "Customer ID (_id) is required" });
+    }
+
+    const orders = await Order.find({ "customer._id": _id });
+
+    return res.status(200).json({ orders });
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
 };
+
 export const LogoutUser = async (req, res) => {
   try {
     const { id } = req.params; // Get user ID from URL
@@ -98,12 +113,36 @@ export const LogoutUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    return res.status(200).json({ message: `User ${id} logged out and deleted successfully` });
+    return res
+      .status(200)
+      .json({ message: `User ${id} logged out and deleted successfully` });
   } catch (error) {
     console.error("Error logging out and deleting user:", error);
     return res.status(500).json({ message: "Internal server error" });
   }
 };
 
-
-
+export const DeletePending = async (req, res) => {
+  try {
+    const { _id } = req.body;
+  
+    const order = await Order.findById(_id);
+  
+    if (!order) {
+      return res.status(404).json({ message: "Order Not Found" });
+    }
+  
+    if (order.order_status !== "PENDING") {
+      return res.status(400).json({ message: `Order cannot be cancelled. Current status: ${order.order_status}` });
+    }
+  
+    await Order.findByIdAndDelete(_id);
+    return res.json({ message: "Order has been cancelled" });
+  
+  } catch (error) {
+    console.error("Cancel Order Error:", error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+  
+  
+};

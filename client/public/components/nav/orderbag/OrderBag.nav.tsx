@@ -8,10 +8,9 @@ import { useCart } from '../../../context/Cart.ctx';
 import { PayLoading } from '../../loader/Loading';
 import { useView } from '../../../context/View.ctx';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import { mainCourseDalData, mainCourseRiceData, mainCourseSabjiData, raitaData, rotiParathaData, saladData } from '../../../iterables/MainCourse.iterable';
+import { mainCourseDalData, mainCourseRiceData, raitaData, rotiParathaData, SabjiData, saladData } from '../../../iterables/MainCourse.iterable';
 import { chineseRiceMenu, chineseStarterMenu, momoMenu, pastaMenu, wokChineseMenu } from '../../../iterables/FusionBites';
 import { FusionBites } from '../menu/mainCourse/MainCourse';
-import { io } from 'socket.io-client';
 
 const NullBanner = () => {
     return (
@@ -24,7 +23,6 @@ const NullBanner = () => {
 const allItems = [
     ...mainCourseDalData,
     ...mainCourseRiceData,
-    ...mainCourseSabjiData,
     ...raitaData,
     ...rotiParathaData,
     ...saladData,
@@ -32,7 +30,8 @@ const allItems = [
     ...chineseStarterMenu,
     ...momoMenu,
     ...pastaMenu,
-    ...wokChineseMenu
+    ...wokChineseMenu,
+    ...SabjiData
 ];
 
 // Function to pick 6 unique random items
@@ -52,15 +51,13 @@ const OrderBag = () => {
 
     const { setView } = useView()
 
-    const socket = io("http://localhost:5000")
-
     const { cartTotal, addToCart, cart, cartItemCount, removeFromCart, updateQuantity } = useCart()
     const [loading, setLoading] = useState(false)
     return loading ? (
         <PayLoading />
     ) : (
-        <search>
-            <div className={`p-2 text-4xl sticky top-0 w-auto h-auto bg-[linear-gradient(to_right,#fca331_90%,#000000_90%)] rounded-2xl flex justify-between`}>
+        <search className=''>
+            <div className={` p-2 text-4xl sticky top-0 w-auto h-auto bg-[linear-gradient(to_right,#fca331_90%,#000000_90%)] rounded-2xl flex justify-between`}>
                 <text className={`${fonts.cinzel}`}>
                     ORDER-BAG{" "}<AlignVerticalBottomIcon className='animate animate-pulse' />
                 </text>
@@ -109,7 +106,6 @@ const OrderBag = () => {
                                 ffClicked={() => { addToCart({ itemName: item.title, code: "FL", quantity: 1, price: item.price_fl ?? 0, img: item.img }) }}
                                 hfClicked={() => { addToCart({ itemName: item.title, code: "HF", quantity: 1, price: item.price_hf ?? 0, img: item.img }) }} // 👈 Only added if `hfClicked` exists
                                 price_fl={item.price_fl}
-                            // {...(item.hfClicked ? { hfClicked: item.hfClicked } : {})} // ✅ Only adds `hfClicked` if it exists
                             />
                         ))}
                     </section>
