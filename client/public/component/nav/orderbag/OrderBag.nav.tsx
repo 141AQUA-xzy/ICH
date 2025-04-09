@@ -8,10 +8,9 @@ import { useCart } from '../../../context/Cart.ctx';
 import { PayLoading } from '../../loader/Loading';
 import { useView } from '../../../context/View.ctx';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import { mainCourseDalData, mainCourseRiceData, mainCourseSabjiData, raitaData, rotiParathaData, saladData } from '../../../iterables/MainCourse.iterable';
+import { mainCourseDalData, mainCourseRiceData, raitaData, rotiParathaData, saladData } from '../../../iterables/MainCourse.iterable';
 import { chineseRiceMenu, chineseStarterMenu, momoMenu, pastaMenu, wokChineseMenu } from '../../../iterables/FusionBites';
 import { FusionBites } from '../menu/mainCourse/MainCourse';
-import { io } from 'socket.io-client';
 
 const NullBanner = () => {
     return (
@@ -24,7 +23,6 @@ const NullBanner = () => {
 const allItems = [
     ...mainCourseDalData,
     ...mainCourseRiceData,
-    ...mainCourseSabjiData,
     ...raitaData,
     ...rotiParathaData,
     ...saladData,
@@ -52,8 +50,6 @@ const OrderBag = () => {
 
     const { setView } = useView()
 
-    const socket = io("http://localhost:5000")
-
     const { cartTotal, addToCart, cart, cartItemCount, removeFromCart, updateQuantity } = useCart()
     const [loading, setLoading] = useState(false)
     return loading ? (
@@ -79,7 +75,7 @@ const OrderBag = () => {
                             <img src='/assets/chef.png' className=''></img>
                         </div>}
                         {
-                            cart.map((item, index) => (
+                            cart.map((item) => (
                                 <CartItem
                                     itemName={item.itemName}
                                     code={item.code}
@@ -109,7 +105,6 @@ const OrderBag = () => {
                                 ffClicked={() => { addToCart({ itemName: item.title, code: "FL", quantity: 1, price: item.price_fl ?? 0, img: item.img }) }}
                                 hfClicked={() => { addToCart({ itemName: item.title, code: "HF", quantity: 1, price: item.price_hf ?? 0, img: item.img }) }} // 👈 Only added if `hfClicked` exists
                                 price_fl={item.price_fl}
-                            // {...(item.hfClicked ? { hfClicked: item.hfClicked } : {})} // ✅ Only adds `hfClicked` if it exists
                             />
                         ))}
                     </section>

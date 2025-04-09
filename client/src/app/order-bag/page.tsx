@@ -48,7 +48,7 @@ const MyOrders = () => {
     const fetchOrders = async () => {
       showLoading()
       try {
-        const response = await fetch("http://192.168.43.106:5000/client/myOrders", {
+        const response = await fetch("https://ich-1gjz.onrender.com/client/myOrders", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -116,7 +116,7 @@ const router = useRouter()
               <button onClick={async () => {
                 showLoading()
                 try {
-                  const res = await fetch("http://192.168.43.106:5000/client/deleteOrder", {
+                  const res = await fetch("https://ich-1gjz.onrender.com/client/deleteOrder", {
                     method: "DELETE",
                     headers: {
                       "Content-Type": "application/json",
@@ -130,6 +130,7 @@ const router = useRouter()
                   }
                 } catch (error) {
                   window.location.reload()
+                  alert(error)
                   toast.error("Operation cannot be performed")
                 } finally {
                   hideLoading()

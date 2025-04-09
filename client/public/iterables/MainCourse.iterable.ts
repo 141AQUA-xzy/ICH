@@ -79,7 +79,7 @@ export const SabjiData: MainCourseProps[] = [
     img: "/assets/MainCourse/matar-paneer.png",
   },
   {
-    title: "Shahi Paneer",
+    title: "Sahi Paneer",
     price_hf: 99,
     price_fl: 179,
     hfClicked: () => alert("HF clicked for Sahi Paneer"),
@@ -239,7 +239,7 @@ export const SabjiData: MainCourseProps[] = [
     img: "/assets/MainCourse/mixed-veg.png",
   },
   {
-    title: "Paneer Handi",
+    title: "Paneer Handi (Chef Special)",
     price_hf: 129,
     price_fl: 229,
     hfClicked: () => alert("HF clicked for Paneer Handi"),

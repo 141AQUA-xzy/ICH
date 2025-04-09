@@ -102,7 +102,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       if (userString) {
         session = JSON.parse(userString) as User;
-        const response = await fetch(`http://192.168.43.106:5000/client/${session._id}/logout`, {
+        const response = await fetch(`https://ich-1gjz.onrender.com/client/${session._id}/logout`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

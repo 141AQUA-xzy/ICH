@@ -9,7 +9,6 @@ import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import FolderSharedIcon from '@mui/icons-material/FolderShared';
 import { useView } from '../../../context/View.ctx';
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon';
-import { text } from 'stream/consumers';
 import EditIcon from '@mui/icons-material/Edit';
 import { fonts } from '../../../fonts/Next.fonts';
 import Link from 'next/link';
@@ -103,7 +102,7 @@ export const HomeNav = () => {
                                 <InsertEmoticonIcon className='' sx={{ fontSize: "5rem" }} />
                             </div>
                             <div className='rounded-lg p-2 flex-1/2 w-1/2 flex flex-col gap-2 justify-center relative'>
-                                <code className={`${fonts.cinzel} w-full text-2xl`}>{user?.name}</code>
+                                <code className={`${fonts.cinzel} w-full text-2xl`}>{user?.username}</code>
                                 <kbd className='w-full text-lg'>+91<kbd className=''>{user?.contact}</kbd></kbd>
                                 <address className='w-full text-sm line-clamp-1'>{user?.location}</address>
                                 <Link href="/user">

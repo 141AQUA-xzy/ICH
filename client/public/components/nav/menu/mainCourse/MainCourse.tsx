@@ -47,6 +47,7 @@ export const MainCourse = (props: MainItems) => {
         </search >
     )
 }
+
 export const FusionBites = (props: MainItems) => {
 
     const { menu } = useMenu(); // Get menu data
@@ -82,3 +83,46 @@ export const FusionBites = (props: MainItems) => {
         </search >
     )
 }
+
+export const MainCourseCard = ({ title, price_hf, price_fl, hfClicked, ffClicked, img }: MainItems) => {
+    const { menu } = useMenu();
+  
+    const item = menu[title];
+    if (!item) return null;
+  
+    const showHalf = price_hf !== null;
+  
+    return (
+      <section className="relative flex flex-col">
+        <div className="w-[50vw] h-max m-2 rounded-lg flex flex-col">
+          <h1 className={`${fonts.cinzel} text-[#FCA331] pr-1 w-full bg-[linear-gradient(to_right,#14213d_90%,#FCA133_90%)]`}>
+            {title}
+          </h1>
+  
+          <img
+            loading="lazy"
+            className="object-cover bg-center h-[30vw] rounded-b-lg"
+            src={img}
+            alt={title}
+          />
+  
+          <div className="flex items-center pt-1">
+            {showHalf && (
+              <button
+                onClick={hfClicked}
+                className="border rounded-b-2xl grow text-sm bg-[#FCA331]"
+              >
+                HF- ₹{price_hf}
+              </button>
+            )}
+            <button
+              onClick={ffClicked}
+              className="border rounded-b-2xl grow text-sm bg-[#FCA331]"
+            >
+              {showHalf ? 'FL-' : 'ADD-'} ₹{price_fl}
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  };
