@@ -1,6 +1,5 @@
 "use client"
 import React from 'react'
-import Carousel, { CarouselItem } from './Carousel.home'
 import { ICHHero, ICHSvg } from '../../ICH.hero'
 import RestaurantMenuIcon from '@mui/icons-material/RestaurantMenu';
 import RamenDiningIcon from '@mui/icons-material/RamenDining';
@@ -14,11 +13,12 @@ import { useLoading } from '../../../context/Loading.ctx';
 import { DotLottieReact, DotLottieWorkerReact } from '@lottiefiles/dotlottie-react';
 import CallIcon from '@mui/icons-material/Call';
 import { Loading } from '../../loader/Loading';
+import Carousel, { CarouselItem } from './Carousel.home';
 
 export const HomeNav = () => {
 
     const { isLoading } = useLoading()
-    const { menu, setView, setMenu, view } = useView()
+    const {  setView, setMenu } = useView()
     const { user } = useUser()
     // Define an array of carousel items
     const carouselItems: CarouselItem[] = [
