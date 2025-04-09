@@ -5,10 +5,9 @@ import { useLoading } from '../../context/Loading.ctx';
 import { OrderProps, PlacedBlock } from '../OrderBlock';
 import toast, { Toaster } from 'react-hot-toast';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import CheckIcon from '@mui/icons-material/Check';
 import { fonts } from '../../assets/fonts/Fonts';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
-import { QRCodeCanvas } from 'qrcode.react';
+
 export const Approved = () => {
     const [orders, setOrder] = useState<OrderProps[]>([]);
     const { showLoading, hideLoading } = useLoading()
