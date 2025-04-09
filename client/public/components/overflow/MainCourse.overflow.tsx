@@ -2,10 +2,11 @@
 
 import React, { useEffect } from 'react'
 import { useCart } from '../../context/Cart.ctx';
-import { mainCourseDalData, SabjiData } from '../../iterables/MainCourse.iterable';
+import { mainCourseDalData, mainCourseRiceData, SabjiData } from '../../iterables/MainCourse.iterable';
 import { useMenu } from '../../context/Menu.ctx';
 import toast from 'react-hot-toast';
 import { FusionBites, MainCourse, MainCourseCard } from '../nav/menu/mainCourse/MainCourse';
+import { momoMenu } from '../../iterables/FusionBites';
 
 export const MainCourseOverflow = () => {
     const { addToCart } = useCart()
@@ -29,7 +30,7 @@ export const MainCourseOverflow = () => {
             <div className='h-max flex flex-col bg-gradient-to-r from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] grow rounded-2xl overflow-x-scroll'>
                 <text className='bg-[#FCA331] text-black sticky left-0 text-center w-full'>RICE</text>
                 <div className='w-max h-full flex relative carouselX'>
-                    {SabjiData.filter((item) => {
+                    {momoMenu.filter((item) => {
                         const entry = menu[item.title];
                         return entry && entry.AVL;
                     })
@@ -76,8 +77,6 @@ export const MainCourseOverflow = () => {
                 <text className='bg-[#FCA331] text-black sticky left-0 text-center w-full'>RICE</text>
                 <div className='w-max h-full flex relative carouselX'>
                     {mainCourseDalData.filter((item) => {
-                        // {rotiParathaData.filter((item) => {
-
                         const entry = menu[item.title];
                         return entry && entry.AVL;
                     })
@@ -87,7 +86,7 @@ export const MainCourseOverflow = () => {
                             const price_fl = entry?.["price-fl"] ?? 0;
 
                             return (
-                                <FusionBites 
+                                <MainCourseCard
                                     key={index}
                                     img={item.img}
                                     title={item.title}

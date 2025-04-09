@@ -7,6 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import { format, formatDistanceToNow } from "date-fns";
 import { useLoading } from "../context/Loading.ctx";
 import { useView } from "../context/View.ctx";
+import { QRCodeCanvas } from "qrcode.react";
 
 export interface CartItem {
     itemName: string;
@@ -176,7 +177,7 @@ export const BookBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
 export const PlacedBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
 
     const { showLoading, hideLoading } = useLoading()
-    const {setView } = useView()
+    const { setView } = useView()
 
     const createdAt = new Date(order.createdAt);
     const now = new Date();
@@ -189,19 +190,22 @@ export const PlacedBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
                     Order for: {order.customer.username}
                 </h3>
                 <kbd className={`rounded-lg animate-bounce px-1 ${order.order_status === "APPROVED" && "bg-[#fca331]"}`}>{order.order_status}</kbd>
-
-
             </div>
             <p className="text-sm text-gray-600">
                 <LocationOnIcon /> {order.customer.location} | 📞 {order.customer.contact}
             </p>
             <div className="mt-2">
+                <div className="w-full flex items-center justify-center">
+                <QRCodeCanvas className="" value={`upi://pay?pa=satputeaadesh@axl&pn=Indian_Curry_House&am=${order.total}&cu=INR`} size={250} />
+                </div>
                 {order.cart.map((item, index) => (
-                    <div key={index} className="flex justify-between border-b py-1">
-                        <span className="font-medium">{item.itemName}</span>
-                        <span className="text-sm">[{item.code}]x<code className="text-lg">{item.quantity}</code></span>
-                        <span className="font-semibold">₹{item.price * item.quantity}</span>
-                    </div>
+                    <search className="flex items-center flex-col">
+                        <div key={index} className="flex justify-between border-b py-1 w-full">
+                            <span className="font-medium">{item.itemName}</span>
+                            <span className="text-sm">[{item.code}]x<code className="text-lg">{item.quantity}</code></span>
+                            <span className="font-semibold">₹{item.price * item.quantity}</span>
+                        </div>
+                    </search>
                 ))}
             </div>
             <div className="mt-2 text-right">

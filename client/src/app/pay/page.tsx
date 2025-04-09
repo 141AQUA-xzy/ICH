@@ -12,13 +12,13 @@ import { useLoading } from "../../../public/context/Loading.ctx";
 
 const PayQR: React.FC = () => {
 
-    const { isLoading, showLoading, hideLoading } = useLoading()
+    const { isLoading, showLoading } = useLoading()
     const router = useRouter()
     const { cartTotal, cart } = useCart()
     const { user } = useUser()
 
     const callbackUrl = encodeURIComponent("https://ich-client.vercel.app/pending");
-    const upiLink = `upi://pay?pa=sudeshsatpute0@okicici&pn=Sudesh&am=${cartTotal}&cu=INR&url=${callbackUrl}`;
+    const upiLink = `upi://pay?pa=satputeaadesh@axl&pn=Indian_Curry_House&am=${cartTotal}&cu=INR&url=${callbackUrl}`;
 
     // const upiLink = `upi://pay?pa=sudeshsatpute0@okicici&am=${cartTotal}&cu=INR`
     const qrRef = useRef<HTMLDivElement | null>(null);

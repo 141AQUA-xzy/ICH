@@ -8,6 +8,7 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import CheckIcon from '@mui/icons-material/Check';
 import { fonts } from '../../assets/fonts/Fonts';
 import DeliveryDiningIcon from '@mui/icons-material/DeliveryDining';
+import { QRCodeCanvas } from 'qrcode.react';
 export const Approved = () => {
     const [orders, setOrder] = useState<OrderProps[]>([]);
     const { showLoading, hideLoading } = useLoading()
@@ -54,8 +55,8 @@ export const Approved = () => {
                 {/* {JSON.stringify(orders)} */}
                 <div className="bg-transparent h-auto w-full flex flex-col gap-2">
                     {orders.map((item, index) => (
-                            <PlacedBlock order={item} key={index} />
-                        ))}
+                        <PlacedBlock order={item} key={index} />
+                    ))}
 
                 </div>
             </div>

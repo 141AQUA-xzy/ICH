@@ -47,14 +47,14 @@ const DownloadPage = () => {
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-            <search className="relative h-64 w-6xl p-0 flex justify-center items-center"><ICHSvg /></search>
-            <h1 className="text-3xl font-bold mb-4">Install ICH</h1>
+            <h1 className="text-3xl font-bold mb-4 shadow shadow-amber-300 p-2">Install ICH</h1>
+            <search className="relative w-full h-64 p-0 flex justify-center items-center"><ICHSvg /></search>
             {isPWAInstalled ? (
                 <p className="text-green-400">✅ ICH is already installed!</p>
             ) : deferredPrompt ? (
                 <button
                     onClick={installPWA}
-                    className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg"
+                    className="px-4 py-2 bg-black text-amber-300 hover:text-black hover:bg-amber-300 text-white rounded-lg"
                 >
                     Install App
                 </button>
