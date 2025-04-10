@@ -18,7 +18,7 @@ const PayQR: React.FC = () => {
     const { user } = useUser()
 
     const callbackUrl = encodeURIComponent("https://ich-client.vercel.app/pending");
-    const upiLink = `upi://pay?pa=satputeaadesh@axl&pn=Indian_Curry_House&am=${cartTotal}&cu=INR&url=${callbackUrl}`;
+    const upiLink = `upi://pay?pa=dragonsofcalifornia@oksbi&pn=Indian_Curry_House&am=${cartTotal}&cu=INR&url=${callbackUrl}`;
 
     // const upiLink = `upi://pay?pa=sudeshsatpute0@okicici&am=${cartTotal}&cu=INR`
     const qrRef = useRef<HTMLDivElement | null>(null);
