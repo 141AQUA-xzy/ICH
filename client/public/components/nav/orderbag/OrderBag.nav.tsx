@@ -8,7 +8,7 @@ import { useCart } from '../../../context/Cart.ctx';
 import { PayLoading } from '../../loader/Loading';
 import { useView } from '../../../context/View.ctx';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import { mainCourseDalData, mainCourseRiceData, raitaData, rotiParathaData, SabjiData, saladData } from '../../../iterables/MainCourse.iterable';
+import { mainCourseDalData, mainCourseRiceData, MainCourseSabjiData, raitaData, rotiParathaData, saladData } from '../../../iterables/MainCourse.iterable';
 import { chineseRiceMenu, chineseStarterMenu, momoMenu, pastaMenu, wokChineseMenu } from '../../../iterables/FusionBites';
 import { FusionBites } from '../menu/mainCourse/MainCourse';
 
@@ -31,7 +31,7 @@ const allItems = [
     ...momoMenu,
     ...pastaMenu,
     ...wokChineseMenu,
-    ...SabjiData
+    // ...MainCourseSabjiData
 ];
 
 // Function to pick 6 unique random items

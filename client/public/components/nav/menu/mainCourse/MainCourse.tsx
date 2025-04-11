@@ -11,6 +11,12 @@ interface MainItems {
     img: string
 }
 
+interface MainItemU {
+  title: string,
+  hfClicked?: () => void,
+  ffClicked: () => void,
+}
+
 
 export const MainCourse = (props: MainItems) => {
 
@@ -84,42 +90,34 @@ export const FusionBites = (props: MainItems) => {
     )
 }
 
-export const MainCourseCard = ({ title, price_hf, price_fl, hfClicked, ffClicked, img }: MainItems) => {
+export const MainCourseCard = ({ title, hfClicked, ffClicked}: MainItemU) => {
     const { menu } = useMenu();
   
     const item = menu[title];
     if (!item) return null;
   
-    const showHalf = price_hf !== null;
+    const showHalf = item['price-fl'] !== null;
   
     return (
-      <section className="relative flex flex-col">
-        <div className="w-[50vw] h-max m-2 rounded-lg flex flex-col">
-          <h1 className={`${fonts.cinzel} text-[#FCA331] pr-1 w-full bg-[linear-gradient(to_right,#14213d_90%,#FCA133_90%)]`}>
+      <section className="relative w-dvw">
+        <div className="h-max w-full rounded-lg flex justify-between items-center gap-1">
+          <h1 className={`${fonts.cinzel} text-[#FCA331] px-2 text-left flex-1/2 w-full bg-[#14213d] rounded-lg`}>
             {title}
           </h1>
-  
-          <img
-            loading="lazy"
-            className="object-cover bg-center h-[30vw] rounded-b-lg"
-            src={img}
-            alt={title}
-          />
-  
           <div className="flex items-center pt-1">
             {showHalf && (
               <button
                 onClick={hfClicked}
-                className="border rounded-b-2xl grow text-sm bg-[#FCA331]"
+                className="border rounded-2xl grow text-sm bg-[#FCA331] px-1"
               >
-                HF- ₹{price_hf}
+                HF- ₹{item['price-hf']}
               </button>
             )}
             <button
               onClick={ffClicked}
-              className="border rounded-b-2xl grow text-sm bg-[#FCA331]"
+              className="border rounded-2xl grow text-sm bg-[#FCA331] px-1"
             >
-              {showHalf ? 'FL-' : 'ADD-'} ₹{price_fl}
+              {showHalf ? 'FL-' : 'ADD-'} ₹{item['price-fl']}
             </button>
           </div>
         </div>

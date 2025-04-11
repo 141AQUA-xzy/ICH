@@ -8,14 +8,40 @@ import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import ThaliHouse from '../components/nav/menu/thaliHouse/ThaliHouse';
 import { useCart } from '../context/Cart.ctx';
-import { MainCourse } from '../components/nav/menu/mainCourse/MainCourse';
+import { MainCourse, MainCourseCard } from '../components/nav/menu/mainCourse/MainCourse';
 import { mainCourseDalData, mainCourseRiceData } from '../iterables/MainCourse.iterable';
 import { chineseRiceMenu, chineseStarterMenu, momoMenu, pastaMenu, wokChineseMenu } from '../iterables/FusionBites';
 import CallIcon from '@mui/icons-material/Call';
 import { Toaster, toast } from "react-hot-toast";
 import { useMenu } from '../context/Menu.ctx';
+import { MainCourseOverflow } from '../components/overflow/MainCourse.overflow';
 
 export const Explore = () => {
+
+ const MainCourseSabjiData: string[] = [
+    "Matar Paneer",
+    "Sahi Paneer",
+    "Butter Paneer",
+    "Paneer Punjabi",
+    "Paneer Bhurji",
+    "Paneer Masala",
+    "Paneer Butter Masala",
+    "Paneer Lababdar",
+    "Paneer Pasanda",
+    "Paneer Do Payaza",
+    "Kadai Paneer",
+    "Paneer Chatpata",
+    "Paneer Malai",
+    "Palak Paneer",
+    "Methi Matar Malai",
+    "Kaju Butter Masala",
+    "Aloo Jeera",
+    "Gobhi Masala",
+    "Sev Tamatar",
+    "Bhindi Masala",
+    "Mixed Veg",
+    "Paneer Handi (Chef Special)",
+  ];
 
   const { menu } = useMenu()
 
@@ -30,8 +56,10 @@ export const Explore = () => {
       { image: "/assets/ThaliHouse/rice.png", name: "Rice" },
       { image: "/assets/ThaliHouse/salad.png", name: "Salad" },
     ],
-    prices: { standard: menu["Student Thali"]["price-hf"],
-      ultimate: menu["Student Thali"]["price-fl"], },
+    prices: {
+      standard: menu["Student Thali"]["price-hf"],
+      ultimate: menu["Student Thali"]["price-fl"],
+    },
   };
 
   const standardThaliData = {
@@ -64,8 +92,10 @@ export const Explore = () => {
       { image: "/assets/ThaliHouse/jeera-rice.png", name: "Jeera Rice" },
       { image: "/assets/ThaliHouse/salad.png", name: "Salad" },
     ],
-    prices: { standard: menu["Executive Thali"]["price-hf"],
-      ultimate: menu["Executive Thali"]["price-fl"], },
+    prices: {
+      standard: menu["Executive Thali"]["price-hf"],
+      ultimate: menu["Executive Thali"]["price-fl"],
+    },
   };
 
   const premiumThaliData = {
@@ -83,8 +113,10 @@ export const Explore = () => {
       { image: "/assets/ThaliHouse/raita.png", name: "Raita" },
       { image: "/assets/ThaliHouse/sweet.png", name: "Sweet" },
     ],
-    prices: { standard: menu["Premium Thali"]["price-hf"],
-      ultimate: menu["Premium Thali"]["price-fl"], },
+    prices: {
+      standard: menu["Premium Thali"]["price-hf"],
+      ultimate: menu["Premium Thali"]["price-fl"],
+    },
   };
 
   const { addToCart } = useCart()
@@ -201,7 +233,7 @@ export const Explore = () => {
                     title={item.title}
                     price_hf={price_hf}
                     price_fl={price_fl}
-                    hfClicked={() =>{
+                    hfClicked={() => {
                       addToCart({
                         itemName: item.title,
                         code: "HF",
@@ -212,7 +244,7 @@ export const Explore = () => {
                       Toast()
                     }
                     }
-                    ffClicked={() =>{
+                    ffClicked={() => {
                       addToCart({
                         itemName: item.title,
                         code: "FL",
@@ -220,7 +252,8 @@ export const Explore = () => {
                         price: price_fl,
                         img: item.img,
                       })
-                    Toast()}
+                      Toast()
+                    }
                     }
                   />
                 );
@@ -247,7 +280,7 @@ export const Explore = () => {
                     title={item.title}
                     price_hf={price_hf}
                     price_fl={price_fl}
-                    hfClicked={() =>{
+                    hfClicked={() => {
                       Toast()
                       addToCart({
                         itemName: item.title,
@@ -255,9 +288,10 @@ export const Explore = () => {
                         quantity: 1,
                         price: price_hf,
                         img: item.img,
-                      })}
+                      })
                     }
-                    ffClicked={() =>{
+                    }
+                    ffClicked={() => {
                       addToCart({
                         itemName: item.title,
                         code: "FL",
@@ -265,15 +299,17 @@ export const Explore = () => {
                         price: price_fl,
                         img: item.img,
                       })
-                      Toast()}
+                      Toast()
+                    }
                     }
                   />
                 );
               })}
           </div>
         </div>
-        {/* <MainCourseOverflow /> */}
+     <MainCourseOverflow />
       </section>
+   
       {/* FUSION-BITES-DONE */}
       <section className='h-auto w-full border flex flex-col gap-1'>
         <div className='w-full h-auto bg-[linear-gradient(to_right,#FCA133_84%,#14213d_84%)] p-2 rounded-xl flex justify-between items-center'>
