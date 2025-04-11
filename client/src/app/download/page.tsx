@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ICHSvg } from "../../../public/components/ICH.hero";
 
 // Define BeforeInstallPromptEvent properly
 interface BeforeInstallPromptEvent extends Event {
