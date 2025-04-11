@@ -8,40 +8,15 @@ import BakeryDiningIcon from '@mui/icons-material/BakeryDining';
 import FastfoodIcon from '@mui/icons-material/Fastfood';
 import ThaliHouse from '../components/nav/menu/thaliHouse/ThaliHouse';
 import { useCart } from '../context/Cart.ctx';
-import { MainCourse, MainCourseCard } from '../components/nav/menu/mainCourse/MainCourse';
+import { MainCourse } from '../components/nav/menu/mainCourse/MainCourse';
 import { mainCourseDalData, mainCourseRiceData } from '../iterables/MainCourse.iterable';
-import { chineseRiceMenu, chineseStarterMenu, momoMenu, pastaMenu, wokChineseMenu } from '../iterables/FusionBites';
+import { chineseRiceMenu, momoMenu, } from '../iterables/FusionBites';
 import CallIcon from '@mui/icons-material/Call';
 import { Toaster, toast } from "react-hot-toast";
 import { useMenu } from '../context/Menu.ctx';
-import { MainCourseOverflow } from '../components/overflow/MainCourse.overflow';
+import { FusionBitesOverflow, MainCourseOverflow } from '../components/overflow/MainCourse.overflow';
 
 export const Explore = () => {
-
- const MainCourseSabjiData: string[] = [
-    "Matar Paneer",
-    "Sahi Paneer",
-    "Butter Paneer",
-    "Paneer Punjabi",
-    "Paneer Bhurji",
-    "Paneer Masala",
-    "Paneer Butter Masala",
-    "Paneer Lababdar",
-    "Paneer Pasanda",
-    "Paneer Do Payaza",
-    "Kadai Paneer",
-    "Paneer Chatpata",
-    "Paneer Malai",
-    "Palak Paneer",
-    "Methi Matar Malai",
-    "Kaju Butter Masala",
-    "Aloo Jeera",
-    "Gobhi Masala",
-    "Sev Tamatar",
-    "Bhindi Masala",
-    "Mixed Veg",
-    "Paneer Handi (Chef Special)",
-  ];
 
   const { menu } = useMenu()
 
@@ -143,7 +118,7 @@ export const Explore = () => {
   const [assist, setAssist] = useState<number>(0);
 
   return (
-    <search className='h-auto'>
+    <search className='h-auto relative'>
       <Toaster position="bottom-center" reverseOrder={false} />
       <div className={`h-dvh w-full backdrop-blur-2xl fixed top-0 z-50 transition-all ease duration-1000 ${assist ? "visible" : "hidden"}`}>
         <div className={`h-1/2 w-3/4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-2/3  rounded-2xl flex flex-col items-center gap-1`}>
@@ -307,9 +282,9 @@ export const Explore = () => {
               })}
           </div>
         </div>
-     <MainCourseOverflow />
+        <MainCourseOverflow />
       </section>
-   
+
       {/* FUSION-BITES-DONE */}
       <section className='h-auto w-full border flex flex-col gap-1'>
         <div className='w-full h-auto bg-[linear-gradient(to_right,#FCA133_84%,#14213d_84%)] p-2 rounded-xl flex justify-between items-center'>
@@ -337,7 +312,7 @@ export const Explore = () => {
                     title={item.title}
                     price_hf={price_hf}
                     price_fl={price_fl}
-                    hfClicked={() =>
+                    hfClicked={() => {
                       addToCart({
                         itemName: item.title,
                         code: "HF",
@@ -345,8 +320,10 @@ export const Explore = () => {
                         price: price_hf,
                         img: item.img,
                       })
+                      Toast()
                     }
-                    ffClicked={() =>
+                    }
+                    ffClicked={() => {
                       addToCart({
                         itemName: item.title,
                         code: "FL",
@@ -354,6 +331,8 @@ export const Explore = () => {
                         price: price_fl,
                         img: item.img,
                       })
+                      Toast()
+                    }
                     }
                   />
                 );
@@ -379,7 +358,7 @@ export const Explore = () => {
                     title={item.title}
                     price_hf={price_hf}
                     price_fl={price_fl}
-                    hfClicked={() =>
+                    hfClicked={() => {
                       addToCart({
                         itemName: item.title,
                         code: "HF",
@@ -387,8 +366,10 @@ export const Explore = () => {
                         price: price_hf,
                         img: item.img,
                       })
+                      Toast()
                     }
-                    ffClicked={() =>
+                    }
+                    ffClicked={() => {
                       addToCart({
                         itemName: item.title,
                         code: "FL",
@@ -396,138 +377,15 @@ export const Explore = () => {
                         price: price_fl,
                         img: item.img,
                       })
+                      Toast()
+                    }
                     }
                   />
                 );
               })}
           </div>
         </div>
-        <div className='h-max relative flex flex-col bg-gradient-to-r from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] grow rounded-2xl overflow-x-scroll'>
-          <text className='bg-[#FCA331] text-black sticky left-0 text-center w-full'>WOK CHINESE</text>
-          <div className='w-max h-full flex relative carouselX'>
-            {wokChineseMenu.filter((item) => {
-              const entry = menu[item.title];
-              return entry && entry.AVL;
-            })
-              .map((item, index) => {
-                const entry = menu[item.title];
-                const price_hf = entry?.["price-hf"] ?? 0;
-                const price_fl = entry?.["price-fl"] ?? 0;
-
-                return (
-                  <MainCourse
-                    key={index}
-                    img={item.img}
-                    title={item.title}
-                    price_hf={price_hf}
-                    price_fl={price_fl}
-                    hfClicked={() =>
-                      addToCart({
-                        itemName: item.title,
-                        code: "HF",
-                        quantity: 1,
-                        price: price_hf,
-                        img: item.img,
-                      })
-                    }
-                    ffClicked={() =>
-                      addToCart({
-                        itemName: item.title,
-                        code: "FL",
-                        quantity: 1,
-                        price: price_fl,
-                        img: item.img,
-                      })
-                    }
-                  />
-                );
-              })}
-          </div>
-        </div>
-        <div className='h-max relative flex flex-col bg-gradient-to-r from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] grow rounded-2xl overflow-x-scroll'>
-          <text className='bg-[#FCA331] text-black sticky left-0 text-center w-full'>PASTA</text>
-          <div className='w-max h-full flex relative carouselX'>
-            {pastaMenu.filter((item) => {
-              const entry = menu[item.title];
-              return entry && entry.AVL;
-            })
-              .map((item, index) => {
-                const entry = menu[item.title];
-                const price_hf = entry?.["price-hf"] ?? 0;
-                const price_fl = entry?.["price-fl"] ?? 0;
-
-                return (
-                  <MainCourse
-                    key={index}
-                    img={item.img}
-                    title={item.title}
-                    price_hf={price_hf}
-                    price_fl={price_fl}
-                    hfClicked={() =>
-                      addToCart({
-                        itemName: item.title,
-                        code: "HF",
-                        quantity: 1,
-                        price: price_hf,
-                        img: item.img,
-                      })
-                    }
-                    ffClicked={() =>
-                      addToCart({
-                        itemName: item.title,
-                        code: "FL",
-                        quantity: 1,
-                        price: price_fl,
-                        img: item.img,
-                      })
-                    }
-                  />
-                );
-              })}
-          </div>
-        </div>
-        <div className='h-max relative flex flex-col bg-gradient-to-r from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] grow rounded-2xl overflow-x-scroll'>
-          <text className='bg-[#FCA331] text-black sticky left-0 text-center w-full'>CHINESE STARTER</text>
-          <div className='w-max h-full flex relative carouselX'>
-            {chineseStarterMenu.filter((item) => {
-              const entry = menu[item.title];
-              return entry && entry.AVL;
-            })
-              .map((item, index) => {
-                const entry = menu[item.title];
-                const price_hf = entry?.["price-hf"] ?? 0;
-                const price_fl = entry?.["price-fl"] ?? 0;
-
-                return (
-                  <MainCourse
-                    key={index}
-                    img={item.img}
-                    title={item.title}
-                    price_hf={price_hf}
-                    price_fl={price_fl}
-                    hfClicked={() =>
-                      addToCart({
-                        itemName: item.title,
-                        code: "HF",
-                        quantity: 1,
-                        price: price_hf,
-                        img: item.img,
-                      })
-                    }
-                    ffClicked={() =>
-                      addToCart({
-                        itemName: item.title,
-                        code: "FL",
-                        quantity: 1,
-                        price: price_fl,
-                        img: item.img,
-                      })
-                    }
-                  />
-                );
-              })}
-          </div>
-        </div>
+        <FusionBitesOverflow />
       </section>
     </search>
   )

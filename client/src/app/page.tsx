@@ -16,11 +16,12 @@ import NearbyOffIcon from '@mui/icons-material/NearbyOff';
 export default function Home() {
 
   const { user } = useUser()
-  const { isLoading, showLoading, hideLoading } = useLoading()
   const router = useRouter()
   // const [session, setSession] = useState(localStorage.getItem("session"))
-
-  const [open, setStatus] = useState()
+  
+  const { isLoading, showLoading, hideLoading } = useLoading()
+  const [open, setStatus] = useState<boolean | null>(null); // start with null to wait for API
+  const [showBanner, setShowBanner] = useState(false);
 
   const resStatus = async () => {
     showLoading()
@@ -30,13 +31,24 @@ export default function Home() {
       setStatus(data.status); // ✅ Set state from response
     } catch (error) {
       console.error("Failed to fetch status:", error);
-    }finally{
+    } finally {
       hideLoading()
     }
   };
+
   useEffect(() => {
     resStatus();
   }, []);
+  
+  useEffect(() => {
+    if (open !== null) {
+      const timer = setTimeout(() => {
+        setShowBanner(true);
+      }, 3000); // 3 seconds
+  
+      return () => clearTimeout(timer);
+    }
+  }, [open]);
 
   useEffect(() => {
     if (user === undefined) return; // ⛔ Wait for user confirmation (strict check)
@@ -51,13 +63,17 @@ export default function Home() {
     }
   }, [user]); // ✅ Depend on `user`, so it runs again when user state updates
 
+
   const { view } = useView()
 
   return (
-    <section className="bg-fixed bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] p-0.5">
-      {!open ? <div className="w-full bg-red-600 fixed z-[100000020200202020] rounded-2xl p-2 bottom-14 animate-pulse flex flex-col"><code><NearbyOffIcon />{" "}CURRENTLY NOT RECEIVING ORDERS</code><address className="text-sm"></address></div> : ""}
-      <h1 className="text-3xl font-bold">
-      </h1>
+    <section className="bg-fixed bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] p-0.5 md:hidden">
+      {/* <div className={`${!open ? "block" : "hidden"} ${!open && "opacity-100"} opacity-0 w-full bg-red-600 fixed z-[100000020200202020] rounded-2xl p-2 bottom-14 animate-pulse flex flex-col`}><code><NearbyOffIcon />{" "}CURRENTLY NOT RECEIVING ORDERS</code><address className="text-sm"></address></div> */}
+      {showBanner && !open && (
+        <div className="opacity-100 w-full bg-red-600 fixed z-[100000020200202020] rounded-2xl p-2 bottom-14 animate-pulse flex flex-col">
+          <code><NearbyOffIcon /> CURRENTLY NOT RECEIVING ORDERS</code>
+        </div>
+      )}
       {isLoading && <Loading />}
       {view === "Home" ? (<HomeNav />) : view === "Menu" ? (
         <MenuPage />

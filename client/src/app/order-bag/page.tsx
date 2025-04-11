@@ -77,7 +77,7 @@ const router = useRouter()
   return (
     <div className="p-4 md:p-8 pb-5 h-dvh bg-gradient-to-b from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)]">
       {isLoading && <Loading />}
-      <h2 className={`${fonts.pressStart2P} text-2xl md:text-3xl font-bold text-black mb-6 text-center rounded-lg bg-[#FCA331] p-2 sticky top-0.5`}><Link href={"/"} onClick={() => showLoading()} className=""><HomeIcon className="mx-2 border rounded-lg" /></Link>My Orders{" "} <DeliveryDiningIcon className="animate-pulse" /></h2>
+      <div className={`flex justify-between items-center ${fonts.pressStart2P} text-2xl md:text-3xl font-bold text-black mb-6 text-center rounded-lg bg-[#FCA331] p-2 sticky top-0.5`}><Link href={"/"} onClick={() => showLoading()} className=""><HomeIcon className="mx-2 rounded-lg" /></Link>My Orders{" "} <DeliveryDiningIcon className="animate-pulse" /></div>
       {orders.length === 0 ? (
         <div className="flex flex-col items-center justify-center min-h-[60vh]">
           <p className="text-white mb-4">No orders found.</p>

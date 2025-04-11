@@ -12,13 +12,12 @@ import { useLoading } from "../../../public/context/Loading.ctx";
 
 const PayQR: React.FC = () => {
 
-    const { isLoading, showLoading } = useLoading()
+    const { isLoading, showLoading, hideLoading } = useLoading()
     const router = useRouter()
     const { cartTotal, cart } = useCart()
     const { user } = useUser()
 
-    const callbackUrl = encodeURIComponent("https://ich-client.vercel.app/pending");
-    const upiLink = `upi://pay?pa=dragonsofcalifornia@oksbi&pn=Indian_Curry_House&am=${cartTotal}&cu=INR&url=${callbackUrl}`;
+    const upiLink = `upi://pay?pa=dragonsofcalifornia@oksbi&pn=Indian_Curry_House&am=${cartTotal}&cu=INR`;
 
     // const upiLink = `upi://pay?pa=sudeshsatpute0@okicici&am=${cartTotal}&cu=INR`
     const qrRef = useRef<HTMLDivElement | null>(null);
@@ -56,6 +55,42 @@ const PayQR: React.FC = () => {
             alert("Sharing not supported on this device.");
         }
     };
+
+    const ExecuteOrder = async () => {
+        showLoading()
+        try {
+            const response = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    cart,         // ✅ Send cart data
+                    customer: user, // ✅ Send customer data
+                    total: cartTotal, // ✅ Send total amount
+                    payment_status: "PAID",
+                    order_status: "PENDING",
+                }),
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to create order");
+            }
+
+            const data = await response.json(); // ✅ Parse JSON response if needed
+            alert(`Placing your promise order,make sure to complete payment`)
+            toast.success(`${data.message}`)
+        } catch (error: unknown) {
+            if (error instanceof Error) {
+                toast.error(`Order failed: ${error.message}`);
+            } else {
+                toast.error("Order failed: An unknown error occurred");
+            }
+        } finally {
+            hideLoading();
+        }
+    };
+
     return (
         <search className="h-dvh flex flex-col items-center justify-center gap-4 bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)]">
             {isLoading && <Loading />}
@@ -68,7 +103,7 @@ const PayQR: React.FC = () => {
                 <QRCodeCanvas value={upiLink} size={250} />
             </div>
             <kbd className="text-amber-400">OR</kbd>
-            <a href={upiLink} target="_blank" rel="noopener noreferrer" className="w-1/2 font-extrabold text-amber-300 text-center rounded-lg text-3xl" style={{ boxShadow: "0px 0px 20px 1px #FCA311" }}>PAY NOW</a>
+            <a href={upiLink} onClick={ExecuteOrder} target="_blank" rel="noopener noreferrer" className="w-1/2 font-extrabold text-amber-300 text-center rounded-lg text-3xl" style={{ boxShadow: "0px 0px 20px 1px #FCA311" }}>PAYING NOW</a>
             <div>
                 <button onClick={downloadQR} className="rounded-lg" style={{ marginTop: "10px", padding: "10px", background: "blue", color: "white" }}>
                     Download QR Code

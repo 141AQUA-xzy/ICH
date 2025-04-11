@@ -9,6 +9,24 @@ export const Status = () => {
     const [open, setStatus] = useState();
     const { showLoading, hideLoading } = useLoading()
 
+    const resStatus = async () => {
+        showLoading()
+        try {
+          const res = await fetch("https://ich-1gjz.onrender.com/admin/grscode");
+          const data = await res.json();
+          setStatus(data.status); // ✅ Set state from response
+        } catch (error) {
+          console.error("Failed to fetch status:", error);
+        } finally {
+          hideLoading()
+        }
+      };
+    
+      useEffect(() => {
+        resStatus();
+      }, []);
+
+
     const OpenClose = async () => {
         showLoading();
         try {

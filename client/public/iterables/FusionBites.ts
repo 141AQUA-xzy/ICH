@@ -85,116 +85,139 @@ export const chineseRiceMenu: FusionBitesProps[] = [
   },
 ];
 
-export const wokChineseMenu: FusionBitesProps[] = [
-  {
-    title: "Veg Noodles",
-    price_hf: 59,
-    price_fl: 119,
-    hfClicked: () => alert("HF clicked for Veg Noodles"),
-    ffClicked: () => alert("FF clicked for Veg Noodles"),
-    img: "/assets/FusionBites/veg-noodles.png",
-  },
-  {
-    title: "Hakka Noodles",
-    price_hf: 69,
-    price_fl: 139,
-    hfClicked: () => alert("HF clicked for Hakka Noodles"),
-    ffClicked: () => alert("FF clicked for Hakka Noodles"),
-    img: "/assets/FusionBites/hakka-noodles.png",
-  },
-  {
-    title: "Veg Szechwan Noodles",
-    price_hf: 79,
-    price_fl: 159,
-    hfClicked: () => alert("HF clicked for Veg Schezwan Noodles"),
-    ffClicked: () => alert("FF clicked for Veg Schezwan Noodles"),
-    img: "/assets/FusionBites/veg-schezwan-noodles.png",
-  },
-  {
-    title: "Chilli Garlic Noodles",
-    price_hf: 79,
-    price_fl: 159,
-    hfClicked: () => alert("HF clicked for Chilli Garlic Noodles"),
-    ffClicked: () => alert("FF clicked for Chilli Garlic Noodles"),
-    img: "/assets/FusionBites/chilli-garlic-noodles.png",
-  },
-  {
-    title: "Manchurian Noodles",
-    price_hf: 89,
-    price_fl: 179,
-    hfClicked: () => alert("HF clicked for Manchurian Noodles"),
-    ffClicked: () => alert("FF clicked for Manchurian Noodles"),
-    img: "/assets/FusionBites/manchurian-noodles.png",
-  },
-  {
-    title: "Paneer Noodles",
-    price_hf: 89,
-    price_fl: 179,
-    hfClicked: () => alert("HF clicked for Paneer Noodles"),
-    ffClicked: () => alert("FF clicked for Paneer Noodles"),
-    img: "/assets/FusionBites/paneer-noodles.png",
-  },
-  {
-    title: "Paneer Szechwan Noodles",
-    price_hf: 89,
-    price_fl: 179,
-    hfClicked: () => alert("HF clicked for Paneer Schezwan Noodles"),
-    ffClicked: () => alert("FF clicked for Paneer Schezwan Noodles"),
-    img: "/assets/FusionBites/paneer-schezwan-noodles.png",
-  },
+export const wokChineseMenuTitles: string[] = [
+  "Veg Noodles",
+  "Hakka Noodles",
+  "Veg Szechwan Noodles",
+  "Chilli Garlic Noodles",
+  "Manchurian Noodles",
+  "Paneer Noodles",
+  "Paneer Szechwan Noodles"
 ];
 
-export const pastaMenu: FusionBitesProps[] = [
-  {
-    title: "Red Sauce Pasta",
-    price_hf: null,
-    price_fl: 129,
-    hfClicked: undefined,
-    ffClicked: () => alert("FF clicked for Red Sauce Pasta"),
-    img: "/assets/FusionBites/red-sauce-pasta.png",
-  },
-  {
-    title: "White Sauce Pasta",
-    price_hf: null,
-    price_fl: 139,
-    hfClicked: undefined,
-    ffClicked: () => alert("FF clicked for White Sauce Pasta"),
-    img: "/assets/FusionBites/white-sauce-pasta.png",
-  },
-  {
-    title: "Mixed Sauce Pasta",
-    price_hf: null,
-    price_fl: 139,
-    hfClicked: undefined,
-    ffClicked: () => alert("FF clicked for Mixed Sauce Pasta"),
-    img: "/assets/FusionBites/mixed-sauce-pasta.png",
-  },
+export const pastaMenuTitles: string[] = [
+  "Red Sauce Pasta",
+  "White Sauce Pasta",
+  "Mixed Sauce Pasta"
 ];
 
-export const chineseStarterMenu: FusionBitesProps[] = [
-  {
-    title: "All Mix",
-    price_hf: null,
-    price_fl: 99,
-    hfClicked: undefined,
-    ffClicked: () => alert("FF clicked for All Mix"),
-    img: "/assets/FusionBites/all-mix.png",
-  },
+export const chineseStarterMenuTitles: string[] = [
+  "All Mix",
+  "Veg Manchurian",
+  "Chilli Paneer"
+];
+
+
+// export const wokChineseMenu: FusionBitesProps[] = [
+//   {
+//     title: "Veg Noodles",
+//     price_hf: 59,
+//     price_fl: 119,
+//     hfClicked: () => alert("HF clicked for Veg Noodles"),
+//     ffClicked: () => alert("FF clicked for Veg Noodles"),
+//     img: "/assets/FusionBites/veg-noodles.png",
+//   },
+//   {
+//     title: "Hakka Noodles",
+//     price_hf: 69,
+//     price_fl: 139,
+//     hfClicked: () => alert("HF clicked for Hakka Noodles"),
+//     ffClicked: () => alert("FF clicked for Hakka Noodles"),
+//     img: "/assets/FusionBites/hakka-noodles.png",
+//   },
+//   {
+//     title: "Veg Szechwan Noodles",
+//     price_hf: 79,
+//     price_fl: 159,
+//     hfClicked: () => alert("HF clicked for Veg Schezwan Noodles"),
+//     ffClicked: () => alert("FF clicked for Veg Schezwan Noodles"),
+//     img: "/assets/FusionBites/veg-schezwan-noodles.png",
+//   },
+//   {
+//     title: "Chilli Garlic Noodles",
+//     price_hf: 79,
+//     price_fl: 159,
+//     hfClicked: () => alert("HF clicked for Chilli Garlic Noodles"),
+//     ffClicked: () => alert("FF clicked for Chilli Garlic Noodles"),
+//     img: "/assets/FusionBites/chilli-garlic-noodles.png",
+//   },
+//   {
+//     title: "Manchurian Noodles",
+//     price_hf: 89,
+//     price_fl: 179,
+//     hfClicked: () => alert("HF clicked for Manchurian Noodles"),
+//     ffClicked: () => alert("FF clicked for Manchurian Noodles"),
+//     img: "/assets/FusionBites/manchurian-noodles.png",
+//   },
+//   {
+//     title: "Paneer Noodles",
+//     price_hf: 89,
+//     price_fl: 179,
+//     hfClicked: () => alert("HF clicked for Paneer Noodles"),
+//     ffClicked: () => alert("FF clicked for Paneer Noodles"),
+//     img: "/assets/FusionBites/paneer-noodles.png",
+//   },
+//   {
+//     title: "Paneer Szechwan Noodles",
+//     price_hf: 89,
+//     price_fl: 179,
+//     hfClicked: () => alert("HF clicked for Paneer Schezwan Noodles"),
+//     ffClicked: () => alert("FF clicked for Paneer Schezwan Noodles"),
+//     img: "/assets/FusionBites/paneer-schezwan-noodles.png",
+//   },
+// ];
+
+// export const pastaMenu: FusionBitesProps[] = [
+//   {
+//     title: "Red Sauce Pasta",
+//     price_hf: null,
+//     price_fl: 129,
+//     hfClicked: undefined,
+//     ffClicked: () => alert("FF clicked for Red Sauce Pasta"),
+//     img: "/assets/FusionBites/red-sauce-pasta.png",
+//   },
+//   {
+//     title: "White Sauce Pasta",
+//     price_hf: null,
+//     price_fl: 139,
+//     hfClicked: undefined,
+//     ffClicked: () => alert("FF clicked for White Sauce Pasta"),
+//     img: "/assets/FusionBites/white-sauce-pasta.png",
+//   },
+//   {
+//     title: "Mixed Sauce Pasta",
+//     price_hf: null,
+//     price_fl: 139,
+//     hfClicked: undefined,
+//     ffClicked: () => alert("FF clicked for Mixed Sauce Pasta"),
+//     img: "/assets/FusionBites/mixed-sauce-pasta.png",
+//   },
+// ];
+
+// export const chineseStarterMenu: FusionBitesProps[] = [
+//   {
+//     title: "All Mix",
+//     price_hf: null,
+//     price_fl: 99,
+//     hfClicked: undefined,
+//     ffClicked: () => alert("FF clicked for All Mix"),
+//     img: "/assets/FusionBites/all-mix.png",
+//   },
  
-  {
-    title: "Veg Manchurian",
-    price_hf: null,
-    price_fl: 119,
-    hfClicked: undefined,
-    ffClicked: () => alert("FF clicked for Veg Manchurian"),
-    img: "/assets/FusionBites/veg-manchurian.png",
-  },
-  {
-    title: "Chilli Paneer",
-    price_hf: null,
-    price_fl: 139,
-    hfClicked: undefined,
-    ffClicked: () => alert("FF clicked for Chilli Paneer"),
-    img: "/assets/FusionBites/chilli-paneer.png",
-  },
-];
+//   {
+//     title: "Veg Manchurian",
+//     price_hf: null,
+//     price_fl: 119,
+//     hfClicked: undefined,
+//     ffClicked: () => alert("FF clicked for Veg Manchurian"),
+//     img: "/assets/FusionBites/veg-manchurian.png",
+//   },
+//   {
+//     title: "Chilli Paneer",
+//     price_hf: null,
+//     price_fl: 139,
+//     hfClicked: undefined,
+//     ffClicked: () => alert("FF clicked for Chilli Paneer"),
+//     img: "/assets/FusionBites/chilli-paneer.png",
+//   },
+// ];

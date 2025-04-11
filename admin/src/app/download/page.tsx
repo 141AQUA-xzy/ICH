@@ -46,22 +46,22 @@ const DownloadPage = () => {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white">
-            <h1 className="text-3xl font-bold mb-4 shadow shadow-amber-300 p-2">Install ICH</h1>
-            <search className="relative w-full h-64 p-0 flex justify-center items-center"><ICHSvg /></search>
-            {isPWAInstalled ? (
-                <p className="text-green-400">✅ ICH is already installed!</p>
-            ) : deferredPrompt ? (
-                <button
-                    onClick={installPWA}
-                    className="px-4 py-2 bg-black text-amber-300 hover:text-black hover:bg-amber-300 text-white rounded-lg"
-                >
-                    Install App
-                </button>
-            ) : (
-                <p className="text-gray-400">Installation is not available</p>
-            )}
-        </div>
+        <div className="flex flex-col items-center justify-around min-h-screen bg-gray-900 text-white">
+        <img src="/assets/emp.png" className="relative w-full h-64 p-0 object-scale-down bg-center"></img>
+        <h1 className="text-3xl text-center font-bold mb-4 duration-2000 p-2 bg-gradient-to-b from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.7)] bg-clip-text text-transparent underline">"Indian Curry House-Admin"</h1>
+        {isPWAInstalled ? (
+            <p className="text-green-400">✅ ICH is already installed!</p>
+        ) : deferredPrompt ? (
+            <button
+                onClick={installPWA}
+                className="px-4 py-2 bg-[#FCA331] text-black transform hover:scale-x-120 rounded-lg"
+            >
+                Install App
+            </button>
+        ) : (
+            <p className="text-gray-400">Installation is not available</p>
+        )}
+    </div>
     );
 };
 

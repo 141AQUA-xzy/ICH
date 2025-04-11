@@ -63,7 +63,7 @@ export const Orders = () => {
                         ))} */}
                     {Object.values(orders)
                         .slice() // ✅ Creates a shallow copy
-                        .reverse() // ✅ Reverses order
+                        // .reverse() // ✅ Reverses order
                         .filter((item) => item.order_status === "PENDING") // ✅ Filters
                         .map((item, index) => (
                             <OrderBlock order={item} key={index} />

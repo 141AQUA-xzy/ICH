@@ -96,28 +96,28 @@ export const MainCourseCard = ({ title, hfClicked, ffClicked}: MainItemU) => {
     const item = menu[title];
     if (!item) return null;
   
-    const showHalf = item['price-fl'] !== null;
+    const hideHalf = item['price-hf'] === null;
   
     return (
-      <section className="relative w-dvw">
+      <section className="relative w-dvw px-0.5">
         <div className="h-max w-full rounded-lg flex justify-between items-center gap-1">
           <h1 className={`${fonts.cinzel} text-[#FCA331] px-2 text-left flex-1/2 w-full bg-[#14213d] rounded-lg`}>
             {title}
           </h1>
           <div className="flex items-center pt-1">
-            {showHalf && (
+            {!hideHalf && (
               <button
                 onClick={hfClicked}
-                className="border rounded-2xl grow text-sm bg-[#FCA331] px-1"
+                className="border rounded-lg grow text-sm bg-[#FCA331] px-1"
               >
                 HF- ₹{item['price-hf']}
               </button>
             )}
             <button
               onClick={ffClicked}
-              className="border rounded-2xl grow text-sm bg-[#FCA331] px-1"
+              className="border rounded-lg grow text-sm bg-[#FCA331] px-1"
             >
-              {showHalf ? 'FL-' : 'ADD-'} ₹{item['price-fl']}
+              {hideHalf ? 'ADD-' : 'FL-'} ₹{item['price-fl']}
             </button>
           </div>
         </div>

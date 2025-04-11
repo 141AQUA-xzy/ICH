@@ -8,8 +8,8 @@ import { useCart } from '../../../context/Cart.ctx';
 import { PayLoading } from '../../loader/Loading';
 import { useView } from '../../../context/View.ctx';
 import FoodBankIcon from '@mui/icons-material/FoodBank';
-import { mainCourseDalData, mainCourseRiceData, MainCourseSabjiData, raitaData, rotiParathaData, saladData } from '../../../iterables/MainCourse.iterable';
-import { chineseRiceMenu, chineseStarterMenu, momoMenu, pastaMenu, wokChineseMenu } from '../../../iterables/FusionBites';
+import { mainCourseDalData, mainCourseRiceData } from '../../../iterables/MainCourse.iterable';
+import { chineseRiceMenu, momoMenu } from '../../../iterables/FusionBites';
 import { FusionBites } from '../menu/mainCourse/MainCourse';
 
 const NullBanner = () => {
@@ -23,15 +23,8 @@ const NullBanner = () => {
 const allItems = [
     ...mainCourseDalData,
     ...mainCourseRiceData,
-    ...raitaData,
-    ...rotiParathaData,
-    ...saladData,
     ...chineseRiceMenu,
-    ...chineseStarterMenu,
     ...momoMenu,
-    ...pastaMenu,
-    ...wokChineseMenu,
-    // ...MainCourseSabjiData
 ];
 
 // Function to pick 6 unique random items
@@ -65,7 +58,6 @@ const OrderBag = () => {
             <section className='flex h-[78vh] m-1 gap-2'>
                 <div className='w-2/3 h-max max-h-[79vh] bg-inherit rounded-2xl flex flex-col gap-1 p-2'>
                     <div className='h-auto max-h-[80vh] grow flex-col overflow-y-scroll'>
-                        {/* {cart.map(()=>())} */}
                         {cartItemCount === 0 && <div className='h-[77vh] rounded-2xl bg-inherit flex flex-col justify-between'>
                             <div className='flex-1/6 flex flex-col justify-center items-center gap-1'>
                                 <NullBanner />
@@ -78,6 +70,7 @@ const OrderBag = () => {
                         {
                             cart.map((item, index) => (
                                 <CartItem
+                                    key={index}
                                     itemName={item.itemName}
                                     code={item.code}
                                     item_price={item.price}
