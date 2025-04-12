@@ -18,7 +18,7 @@ export default function Home() {
   const { user } = useUser()
   const router = useRouter()
   // const [session, setSession] = useState(localStorage.getItem("session"))
-  
+
   const { isLoading, showLoading, hideLoading } = useLoading()
   const [open, setStatus] = useState<boolean | null>(null); // start with null to wait for API
   const [showBanner, setShowBanner] = useState(false);
@@ -39,13 +39,13 @@ export default function Home() {
   useEffect(() => {
     resStatus();
   }, []);
-  
+
   useEffect(() => {
     if (open !== null) {
       const timer = setTimeout(() => {
         setShowBanner(true);
       }, 3000); // 3 seconds
-  
+
       return () => clearTimeout(timer);
     }
   }, [open]);
@@ -74,6 +74,9 @@ export default function Home() {
           <code><NearbyOffIcon />CURRENTLY NOT RECEIVING ORDERS</code>
         </div>
       )}
+      {
+        !showBanner && <div className="h-dvh w-full flex justify-center items-center backdrop-blur-lg fixed z-[888888888888888888888888]"></div>
+      }
       {isLoading && <Loading />}
       {view === "Home" ? (<HomeNav />) : view === "Menu" ? (
         <MenuPage />
