@@ -67,11 +67,11 @@ export default function Home() {
   const { view } = useView()
 
   return (
-    <section className="bg-fixed bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] p-0.5 md:hidden">
+    <section className="md:hidden bg-fixed bg-gradient-to-t from-[rgba(20,33,61,0.3)] to-[rgba(252,163,17,0.4)] p-0.5">
       {/* <div className={`${!open ? "block" : "hidden"} ${!open && "opacity-100"} opacity-0 w-full bg-red-600 fixed z-[100000020200202020] rounded-2xl p-2 bottom-14 animate-pulse flex flex-col`}><code><NearbyOffIcon />{" "}CURRENTLY NOT RECEIVING ORDERS</code><address className="text-sm"></address></div> */}
       {showBanner && !open && (
         <div className="opacity-100 w-full bg-red-600 fixed z-[100000020200202020] rounded-2xl p-2 bottom-14 animate-pulse flex flex-col">
-          <code><NearbyOffIcon /> CURRENTLY NOT RECEIVING ORDERS</code>
+          <code><NearbyOffIcon />CURRENTLY NOT RECEIVING ORDERS</code>
         </div>
       )}
       {isLoading && <Loading />}
