@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { useLoading } from "../../public/context/Loading.ctx";
 import { Loading } from "../../public/components/loader/Loading";
 import NearbyOffIcon from '@mui/icons-material/NearbyOff';
+import { OurServices } from "../../public/components/more/Service.more";
 
 
 export default function Home() {
@@ -75,12 +76,12 @@ export default function Home() {
         </div>
       )}
       {
-        !showBanner && <div className="h-dvh w-full flex justify-center items-center backdrop-blur-lg fixed z-[888888888888888888888888]"></div>
+        !showBanner && <div className="h-dvh w-full flex justify-center items-center backdrop-blur-lg fixed z-[888888888888888888888888]"><h1>Setting Up...</h1></div>
       }
       {isLoading && <Loading />}
       {view === "Home" ? (<HomeNav />) : view === "Menu" ? (
         <MenuPage />
-      ) : view === "Order-Bag" ? (<OrderBag />) : view === "More" ? (<More />) : view === "Services" ? (<div>Services Section</div>) : view === "Offers" ? (<div>Special Offers</div>) : view === "Collab" && (<div>Collaborate</div>)}
+      ) : view === "Order-Bag" ? (<OrderBag />) : view === "More" ? (<More />) : view === "Services" ? (<OurServices />) : view === "Offers" ? (<div>Special Offers</div>) : view === "Collab" && (<div>Collaborate</div>) }
       <Nav />
     </section>
   );

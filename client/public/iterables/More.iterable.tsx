@@ -11,7 +11,6 @@ import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import PolicyIcon from '@mui/icons-material/Policy';
 import RateReviewIcon from '@mui/icons-material/RateReview';
-import toast from "react-hot-toast";
 
 
 export const MoreIterator = (
@@ -43,7 +42,7 @@ export const MoreIterator = (
       title: "Our Services",
       icon: ShoppingBasketIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Coming Soon...");
+        setView("Services")
       },
     }, {
       title: "ICH Gallery",
