@@ -18,7 +18,7 @@ const PayQR: React.FC = () => {
     const { cartTotal, cart } = useCart();
     const { user } = useUser();
 
-    const upiLink = `upi://pay?pa=dragonsofcalifornia@oksbi&pn=Indian_Curry_House&am=${cartTotal}&cu=INR`;
+    const upiLink = `upi://pay?pa=q710949404@ybl&pn=Indian_Curry_House&am=${cartTotal}&cu=INR`;
     const qrRef = useRef<HTMLDivElement | null>(null);
 
     const downloadQR = () => {

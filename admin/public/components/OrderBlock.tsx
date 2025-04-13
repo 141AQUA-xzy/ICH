@@ -195,7 +195,7 @@ export const PlacedBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
             </p>
             <div className="mt-2">
                 <div className="w-full flex items-center justify-center">
-                <QRCodeCanvas className="" value={`upi://pay?pa=satputeaadesh@axl&pn=Indian_Curry_House&am=${order.total}&cu=INR`} size={250} />
+                <QRCodeCanvas className="" value={`upi://pay?pa=q710949404@ybl&pn=Indian_Curry_House&am=${order.total}&cu=INR`} size={250} />
                 </div>
                 {order.cart.map((item, index) => (
                     <search className="flex items-center flex-col">
