@@ -83,7 +83,7 @@ export default function Home() {
       {isLoading && <Loading />}
       {view === "Home" ? (<HomeNav />) : view === "Menu" ? (
         <MenuPage />
-      ) : view === "Order-Bag" ? (<OrderBag />) : view === "More" ? (<More />) : view === "Services" ? (<OurServices />) : view === "Offers" ? (<div>Special Offers</div>) : view === "Collab" ? (<div>Collaborate</div>) : view === "Reviews" ? <ReviewsPage/> : <AddReviewPage /> }
+      ) : view === "Order-Bag" ? (<OrderBag />) : view === "More" ? (<More />) : view === "Services" ? (<OurServices />) : view === "Offers" ? (<div className="h-dvh w-full bg-[#FCA331] flex justify-center items-center"><p className="text-black">Coming Soon...</p></div>) : view === "Collab" ? (<div className="h-dvh w-full bg-[#FCA331] flex justify-center items-center"><p className="text-black">Coming Soon...</p></div>) : view === "Reviews" ? <ReviewsPage /> : <AddReviewPage />}
       <Nav />
     </section>
   );
