@@ -18,7 +18,8 @@ const PayQR: React.FC = () => {
     const { cartTotal, cart } = useCart();
     const { user } = useUser();
 
-    const upiLink = `upi://pay?pa=q710949404@ybl&pn=Indian_Curry_House&am=${cartTotal}&cu=INR`;
+    const upiLink = `upi://pay?pa=q710949404@ybl&pn=${encodeURIComponent("Indian Curry House")}&am=${cartTotal}&cu=INR`;
+
     const qrRef = useRef<HTMLDivElement | null>(null);
 
     const downloadQR = () => {
@@ -70,7 +71,7 @@ const PayQR: React.FC = () => {
 
             const data = await response.json();
             toast.success(`${data.message}`);
-            alert("Placing your promise order, make sure to complete payment");
+            alert("Placing your promise order, make sure to complete payment...else order will not approve.");
         } catch (error) {
             toast.error(`Order failed: ${error instanceof Error ? error.message : "An unknown error occurred"}`);
         } finally {
@@ -87,8 +88,15 @@ const PayQR: React.FC = () => {
                     <ICHSvg />
                 </div>
                 <h2 className={`text-amber-400 text-xl ${fonts}`}>Scan & Pay : ₹{cartTotal}</h2>
-                <div ref={qrRef} className="p-2 rounded-2xl shadow shadow-amber-300">
-                    <QRCodeCanvas value={upiLink} size={250} />
+                <div
+                    ref={qrRef}
+                    className="bg-white p-6 rounded-xl border-4 border-amber-400 shadow-lg flex flex-col items-center gap-2"
+                    style={{ width: 300 }}
+                >
+                    <h3 className="text-xl font-bold text-amber-500">Scan & Pay</h3>
+                    <QRCodeCanvas value={upiLink} size={200} />
+                    <p className="text-sm text-gray-600">Indian Curry House</p>
+                    <p className="text-sm font-medium text-gray-800">Amount: ₹{cartTotal}</p>
                 </div>
                 <kbd className="text-amber-400">OR</kbd>
                 <a

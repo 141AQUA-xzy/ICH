@@ -49,9 +49,9 @@ export const Orders = () => {
             <ICHHero />
             <h1 className={`${fonts.dancingScript} text-center w-full h-max p-2 text-2xl bg-[#FCA331] rounded-lg`}>PENDING APPROVAL{" "}<SendTimeExtensionIcon style={{ color: "black" }} className='animate animate-bounce' /></h1>
             <div className={`${Object.keys(orders).length === 0 && "overflow-hidden"} mt-1 h-[76vh] w-full border p-1 rounded-lg overflow-x-auto text-black pb-20 ${orders.length === 0 && "pb-0"}`}>
-                {/* {Object.keys(orders).length === 0 && <div className="h-dvh w-full bg-inherit text-white flex flex-col justify-center items-center">
+                {Object.keys(orders).length === 0 && <div className="h-dvh w-full bg-inherit text-white flex flex-col justify-center items-center">
                     <Await />
-                </div>} */}
+                </div>}
                 {/* {JSON.stringify(orders)} */}
                 <div className="bg-transparent h-auto w-full flex flex-col gap-2">
                     {/* {orders
