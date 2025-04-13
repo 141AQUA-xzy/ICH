@@ -1,7 +1,7 @@
 "use client"
 
 import { QRCodeCanvas } from "qrcode.react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { fonts } from "../../../public/fonts/Next.fonts";
 import { useCart } from "../../../public/context/Cart.ctx";
 import { useUser } from "../../../public/context/Session.ctx";
