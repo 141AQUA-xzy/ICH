@@ -53,10 +53,10 @@ export const MoreIterator = (
 
     },
     {
-      title: "See Reviews",
+      title: "Reviews",
       icon: RateReviewIcon, // ✅ Pass the component reference, NOT JSX
       handleClick: () => {
-        alert("Coming Soon...");
+        setView("Reviews")
       },
     },
     {

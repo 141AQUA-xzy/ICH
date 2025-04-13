@@ -24,26 +24,28 @@ const services = [
 
 export const OurServices = () => {
     return (
-        <div className="min-h-screen h-dvh bg-black text-white px-6 w-full">
+        <>
             <ICHHero />
-            <h1 className="text-4xl font-bold text-[#FCA331] mb-12 text-center">Our Services</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                {services.map((service, index) => (
-                    <div
-                        key={index}
-                        className="border border-[#FCA331] p-6 rounded-2xl shadow-lg hover:shadow-[#FCA331]/50 transition-shadow"
-                    >
-                        <h2 className="text-2xl font-semibold text-[#FCA331] mb-4">{service.title}</h2>
-                        <p className="mb-6 leading-relaxed">{service.description}</p>
-                        <a
-                            href="tel:+918770025814"
-                            className="inline-block bg-[#FCA331] text-black font-medium py-2 px-4 rounded-xl hover:bg-[#e59427] transition-colors"
+            <div className="min-h-screen h-dvh bg-black text-white px-6 w-full">
+                <h1 className="text-4xl font-bold text-[#FCA331] mb-12 text-center">Our Services</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    {services.map((service, index) => (
+                        <div
+                            key={index}
+                            className="border border-[#FCA331] p-6 rounded-2xl shadow-lg hover:shadow-[#FCA331]/50 transition-shadow"
                         >
-                            Know More{" "}<CallIcon />
-                        </a>
-                    </div>
-                ))}
+                            <h2 className="text-2xl font-semibold text-[#FCA331] mb-4">{service.title}</h2>
+                            <p className="mb-6 leading-relaxed">{service.description}</p>
+                            <a
+                                href="tel:+918770025814"
+                                className="inline-block bg-[#FCA331] text-black font-medium py-2 px-4 rounded-xl hover:bg-[#e59427] transition-colors"
+                            >
+                                Know More{" "}<CallIcon />
+                            </a>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 }

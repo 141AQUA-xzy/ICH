@@ -12,6 +12,8 @@ import { useLoading } from "../../public/context/Loading.ctx";
 import { Loading } from "../../public/components/loader/Loading";
 import NearbyOffIcon from '@mui/icons-material/NearbyOff';
 import { OurServices } from "../../public/components/more/Service.more";
+import ReviewsPage from "../../public/components/more/Reviews.more";
+import AddReviewPage from "../../public/components/more/AddReview.portal";
 
 
 export default function Home() {
@@ -81,7 +83,7 @@ export default function Home() {
       {isLoading && <Loading />}
       {view === "Home" ? (<HomeNav />) : view === "Menu" ? (
         <MenuPage />
-      ) : view === "Order-Bag" ? (<OrderBag />) : view === "More" ? (<More />) : view === "Services" ? (<OurServices />) : view === "Offers" ? (<div>Special Offers</div>) : view === "Collab" && (<div>Collaborate</div>) }
+      ) : view === "Order-Bag" ? (<OrderBag />) : view === "More" ? (<More />) : view === "Services" ? (<OurServices />) : view === "Offers" ? (<div>Special Offers</div>) : view === "Collab" ? (<div>Collaborate</div>) : view === "Reviews" ? <ReviewsPage/> : <AddReviewPage /> }
       <Nav />
     </section>
   );

@@ -40,6 +40,7 @@ export const OrderBook = async (req, res) => {
     return res.status(500).json({ message: "Internal server error" });
   }
 };
+
 export const DeleteReview = async (req, res) => {
   const { _id } = req.params;
 
@@ -47,6 +48,7 @@ export const DeleteReview = async (req, res) => {
 
   return res.json({ message: "Review Deleted" });
 };
+
 export const AddItem = async (req, res) => {
   try {
     const { Items } = req.body;
@@ -164,6 +166,15 @@ export const ClearOrders = async (req, res) => {
   try {
     await Order.deleteMany({}); // ✅ Deletes all documents in the collection
     res.json({ message: "Cleaned Up ORDER-BOOK" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const ClearReviews = async (req, res) => {
+  try {
+    await Review.deleteMany({}); // ✅ Deletes all documents in the collection
+    res.json({ message: "Cleaned Up Reviews" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

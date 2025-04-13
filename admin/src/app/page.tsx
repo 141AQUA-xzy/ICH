@@ -9,6 +9,7 @@ import MenuEditor from "../../public/components/nav/EditMenu.nav";
 import { History } from "../../public/components/nav/History.nav";
 import { Loading } from "../../public/loaders/Loading";
 import { useEffect, useState } from "react";
+import ReviewsPage from "../../public/components/nav/Reviews.nav";
 
 export default function Home() {
 
@@ -54,7 +55,7 @@ export default function Home() {
       )}
       {isLoading && <Loading />}
       <Menu />
-      {view === "PENDING" ? <Orders /> : view === "APPROVED" ? <Approved /> : view === "EDITMENU" ? <MenuEditor /> : view === "OPEN/CLOSE" ? <Status /> : view === "HISTORY" && <History />}
+      {view === "PENDING" ? <Orders /> : view === "APPROVED" ? <Approved /> : view === "EDITMENU" ? <MenuEditor /> : view === "OPEN/CLOSE" ? <Status /> : view === "HISTORY" ? <History /> : view === "REVIEWS" && <ReviewsPage />}
     </search>
   );
 }

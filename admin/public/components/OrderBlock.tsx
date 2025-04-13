@@ -37,7 +37,6 @@ export const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
     const diffInDays = (now.getTime() - createdAt.getTime()) / (1000 * 60 * 60 * 24);
     return (
         <div className="p-4 pb-0 bg-white shadow-md rounded-lg">
-            {order._id}
             <div className="flex justify-between">
                 <h3 className="text-lg font-bold text-gray-800">
                     Order for: {order.customer.username}

@@ -2,6 +2,7 @@ import express from "express";
 import {
   AddItem,
   ClearOrders,
+  ClearReviews,
   CreateOrder,
   DeleteItem,
   DeleteReview,
@@ -28,6 +29,7 @@ routing.put("/set_order_status", OrderStatus);
 routing.post("/menu-edit",MenuControl)
 routing.get("/menu",GetMenu)
 routing.delete("/cleanup",ClearOrders)
+routing.delete("/rev-cleanup",ClearReviews)
 routing.post("/stated_order",GetOrderOfStatus)
 routing.put("/status",RestaurantStatus)
 routing.get("/grs",RestaurantStatus)
