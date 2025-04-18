@@ -3,7 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLoading } from "./Loading.ctx";
 
 // API URLs
-const LATEST_MENU = "https://restaurant-apis-za52.onrender.com/admin/menu"; // For fetching latest menu
+const LATEST_MENU = "https://restaurantapis.onrender.com/admin/menu"; // For fetching latest menu
 
 // Context Type
 interface MenuContextType {

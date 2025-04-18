@@ -57,7 +57,7 @@
 //     const ExecuteOrder = async () => {
 //         showLoading();
 //         try {
-//             const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
+//             const response = await fetch("https://restaurantapis.onrender.com/admin/create_order", {
 //                 method: "POST",
 //                 headers: { "Content-Type": "application/json" },
 //                 body: JSON.stringify({
@@ -129,7 +129,7 @@
 //                     onClick={async () => {
 //                         showLoading();
 //                         try {
-//                             const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
+//                             const res = await fetch("https://restaurantapis.onrender.com/admin/create_order", {
 //                                 method: "POST",
 //                                 headers: { "Content-Type": "application/json" },
 //                                 body: JSON.stringify({
@@ -282,7 +282,7 @@ const PayQR: React.FC = () => {
         
         showLoading();
         try {
-            const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
+            const response = await fetch("https://restaurantapis.onrender.com/admin/create_order", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -374,7 +374,7 @@ const PayQR: React.FC = () => {
                     onClick={async () => {
                         showLoading();
                         try {
-                            const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
+                            const res = await fetch("https://restaurantapis.onrender.com/admin/create_order", {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({

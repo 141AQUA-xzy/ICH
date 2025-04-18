@@ -48,7 +48,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const login = async (userData: User) => {
     showLoading()
     try {
-      const response = await fetch("https://restaurant-apis-za52.onrender.com/client/create_user", {
+      const response = await fetch("https://restaurantapis.onrender.com/client/create_user", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -102,7 +102,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
       if (userString) {
         session = JSON.parse(userString) as User;
-        const response = await fetch(`https://restaurant-apis-za52.onrender.com/client/${session._id}/logout`, {
+        const response = await fetch(`https://restaurantapis.onrender.com/client/${session._id}/logout`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

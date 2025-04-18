@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { ICHSvg } from '../ICHHero'
 import toast, { Toaster } from 'react-hot-toast';
 import { useLoading } from '../../context/Loading.ctx';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
@@ -12,7 +11,7 @@ export const Status = () => {
     const resStatus = async () => {
         showLoading()
         try {
-          const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/grscode");
+          const res = await fetch("https://restaurantapis.onrender.com/admin/grscode");
           const data = await res.json();
           setStatus(data.status); // ✅ Set state from response
         } catch (error) {
@@ -30,7 +29,7 @@ export const Status = () => {
     const OpenClose = async () => {
         showLoading();
         try {
-            const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/grs");
+            const res = await fetch("https://restaurantapis.onrender.com/admin/grs");
             const data = await res.json(); // ✅ Await this!
             setStatus(data.status);
 

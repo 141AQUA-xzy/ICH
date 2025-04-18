@@ -17,7 +17,7 @@ export const History = () => {
         showLoading()
         const fetchOrders = async () => {
             try {
-                const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/order-book", {
+                const response = await fetch("https://restaurantapis.onrender.com/admin/order-book", {
                     method: "GET", // ✅ Use POST if sending user details
                     headers: {
                         "Content-Type": "application/json",

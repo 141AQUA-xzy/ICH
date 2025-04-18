@@ -31,7 +31,7 @@ const ReviewsPage = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const response = await fetch("https://restaurant-apis-za52.onrender.com/client/reviews"); // Replace with your endpoint
+                const response = await fetch("https://restaurantapis.onrender.com/client/reviews"); // Replace with your endpoint
                 const data = await response.json();
                 setReviews(data);
             } catch (error) {
@@ -48,7 +48,7 @@ const ReviewsPage = () => {
     const DeleteReview = async (_id: string) => {
         setLoading(true)
         try {
-            const response = await fetch(`https://restaurant-apis-za52.onrender.com/admin/delete-review/${_id}`, {
+            const response = await fetch(`https://restaurantapis.onrender.com/admin/delete-review/${_id}`, {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
             }); // Replace with your endpoint
