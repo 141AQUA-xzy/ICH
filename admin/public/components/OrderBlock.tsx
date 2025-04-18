@@ -68,7 +68,7 @@ export const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
                     <button onClick={async () => {
                         showLoading()
                         try {
-                            const response = await fetch("https://ich-1gjz.onrender.com/admin/set_order_status", {
+                            const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/set_order_status", {
                                 method: "PUT",  // ✅ Use POST (or PATCH) to modify data
                                 headers: {
                                     "Content-Type": "application/json",  // ✅ Tell server you're sending JSON
@@ -94,7 +94,7 @@ export const OrderBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
                     <button onClick={async () => {
                         showLoading()
                         try {
-                            const response = await fetch("https://ich-1gjz.onrender.com/admin/set_order_status", {
+                            const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/set_order_status", {
                                 method: "PUT",  // ✅ Use POST (or PATCH) to modify data
                                 headers: {
                                     "Content-Type": "application/json",  // ✅ Tell server you're sending JSON
@@ -218,7 +218,7 @@ export const PlacedBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
                 <button onClick={async () => {
                     showLoading()
                     try {
-                        const response = await fetch("https://ich-1gjz.onrender.com/admin/set_order_status", {
+                        const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/set_order_status", {
                             method: "PUT",  // ✅ Use POST (or PATCH) to modify data
                             headers: {
                                 "Content-Type": "application/json",  // ✅ Tell server you're sending JSON
@@ -248,7 +248,7 @@ export const PlacedBlock: React.FC<{ order: OrderProps }> = ({ order }) => {
                 <button onClick={async () => {
                     showLoading()
                     try {
-                        const response = await fetch("https://ich-1gjz.onrender.com/admin/set_order_status", {
+                        const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/set_order_status", {
                             method: "PUT",  // ✅ Use POST (or PATCH) to modify data
                             headers: {
                                 "Content-Type": "application/json",  // ✅ Tell server you're sending JSON

@@ -16,7 +16,7 @@ export const Orders = () => {
         showLoading()
         const fetchOrders = async () => {
             try {
-                const response = await fetch("https://ich-1gjz.onrender.com/admin/stated_order", {
+                const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/stated_order", {
                     method: "POST", // ✅ Use POST if sending user details
                     headers: {
                         "Content-Type": "application/json",

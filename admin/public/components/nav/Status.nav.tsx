@@ -12,7 +12,7 @@ export const Status = () => {
     const resStatus = async () => {
         showLoading()
         try {
-          const res = await fetch("https://ich-1gjz.onrender.com/admin/grscode");
+          const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/grscode");
           const data = await res.json();
           setStatus(data.status); // ✅ Set state from response
         } catch (error) {
@@ -30,7 +30,7 @@ export const Status = () => {
     const OpenClose = async () => {
         showLoading();
         try {
-            const res = await fetch("https://ich-1gjz.onrender.com/admin/grs");
+            const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/grs");
             const data = await res.json(); // ✅ Await this!
             setStatus(data.status);
 

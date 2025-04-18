@@ -39,7 +39,7 @@ const AddReviewPage = () => {
         };
 
         try {
-            const res = await fetch("https://ich-1gjz.onrender.com/client/feedback", {
+            const res = await fetch("https://restaurant-apis-za52.onrender.com/client/feedback", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),

@@ -57,7 +57,7 @@
 //     const ExecuteOrder = async () => {
 //         showLoading();
 //         try {
-//             const response = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
+//             const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
 //                 method: "POST",
 //                 headers: { "Content-Type": "application/json" },
 //                 body: JSON.stringify({
@@ -129,7 +129,7 @@
 //                     onClick={async () => {
 //                         showLoading();
 //                         try {
-//                             const res = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
+//                             const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
 //                                 method: "POST",
 //                                 headers: { "Content-Type": "application/json" },
 //                                 body: JSON.stringify({
@@ -167,7 +167,6 @@
 
 import { QRCodeCanvas } from "qrcode.react";
 import { useRef, useState, useEffect } from "react";
-import { fonts } from "../../../public/fonts/Next.fonts";
 import { useCart } from "../../../public/context/Cart.ctx";
 import { useUser } from "../../../public/context/Session.ctx";
 import { toast, Toaster } from "react-hot-toast";
@@ -203,7 +202,7 @@ const PayQR: React.FC = () => {
         }
     }, []);
 
-    const upiLink = `upi://pay?pa=q710949404@ybl&pn=${encodeURIComponent("Indian Curry House")}&am=${storedCartTotal || cartTotal}&cu=INR`;
+    const upiLink = `upi://pay?pa=dragonsofcalifornia@oksbi&pn=${encodeURIComponent("Indian Curry House")}&am=${storedCartTotal || cartTotal}&cu=INR`;
     const qrRef = useRef<HTMLDivElement | null>(null);
 
     // 5-minute countdown timer
@@ -283,7 +282,7 @@ const PayQR: React.FC = () => {
         
         showLoading();
         try {
-            const response = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
+            const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -375,7 +374,7 @@ const PayQR: React.FC = () => {
                     onClick={async () => {
                         showLoading();
                         try {
-                            const res = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
+                            const res = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
                                 method: "POST",
                                 headers: { "Content-Type": "application/json" },
                                 body: JSON.stringify({

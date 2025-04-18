@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { fonts } from "../../assets/fonts/Fonts";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import { useLoading } from "../../context/Loading.ctx";
-const LATEST_MENU = "https://ich-1gjz.onrender.com/admin/menu";
-const API_URL = "https://ich-1gjz.onrender.com/admin/menu-edit";
+const LATEST_MENU = "https://restaurant-apis-za52.onrender.com/admin/menu";
+const API_URL = "https://restaurant-apis-za52.onrender.com/admin/menu-edit";
 
 const MenuEditor: React.FC = () => {
 
@@ -143,8 +143,8 @@ export default MenuEditor;
 // "use client";
 // import React, { useEffect, useState } from "react";
 
-// const LATEST_MENU = "https://ich-1gjz.onrender.com/admin/menu"; // ✅ Fetch latest menu
-// const API_URL = "https://ich-1gjz.onrender.com/admin/menu-edit"; // ✅ Update menu endpoint
+// const LATEST_MENU = "https://restaurant-apis-za52.onrender.com/admin/menu"; // ✅ Fetch latest menu
+// const API_URL = "https://restaurant-apis-za52.onrender.com/admin/menu-edit"; // ✅ Update menu endpoint
 
 // const MenuEditor: React.FC = () => {
 //     const [menu, setMenu] = useState<Record<string, { "price-hf"?: number | null; "price-fl": number, "AVL": boolean }>>({});

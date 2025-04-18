@@ -17,7 +17,7 @@ const PendingApproval = () => {
         const ExecuteOrder = async () => {
             showLoading()
             try {
-                const response = await fetch("https://ich-1gjz.onrender.com/admin/create_order", {
+                const response = await fetch("https://restaurant-apis-za52.onrender.com/admin/create_order", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
